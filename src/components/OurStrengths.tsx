@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+import { strengthData } from "../config/data";
 
 export default function OurStrengths() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -26,29 +26,6 @@ export default function OurStrengths() {
         return () => ctx.revert();
     }, []);
 
-    const strengthData = [
-        {
-            title: "AI-POWERED SAFETY - PPE",
-            image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000",
-            points: [
-                "AI-enabled PPE workplace 100% safety monitoring",
-                "Real-time PPE non-compliance alerts",
-                "Hazards spillage & Unconscious detection system",
-                "AI-Based unsafe action detection with corrective action plan"
-            ]
-        },
-        {
-            title: "SOLAR ROBOTICS CLEANING SYSTEM",
-            image: "https://images.unsplash.com/photo-1508514177221-18d14746d73c?q=80&w=1000",
-            points: [
-                "Fully automated operation",
-                "Boost Solar power generation by up to 40%",
-                "Water – Efficient system – up to 75% Saving",
-                "Smart remote monitoring with mobile app control"
-            ]
-        }
-    ];
-
     return (
         <section ref={sectionRef} id="strengths" className="py-24 bg-[#0B1128] overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6">
@@ -62,19 +39,19 @@ export default function OurStrengths() {
                     {strengthData.map((category, idx) => (
                         <div key={idx} className="strength-column flex flex-col group">
                             {/* Heading */}
-                            <h3 className="text-xl md:text-2xl font-bold text-[#4ade80] uppercase tracking-wide mb-8 group-hover:text-white transition-colors">
+                            <h3 className="text-xl md:text-2xl font-bold text-[#4ade80] uppercase tracking-wide mb-8 group-hover:text-white transition-colors duration-300">
                                 {category.title}
                             </h3>
 
                             {/* Image Container */}
-                            <div className="relative w-full aspect-video rounded-sm overflow-hidden mb-12 shadow-2xl border border-white/5 group-hover:border-[#4ade80]/30 transition-all duration-500">
+                            <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-12 shadow-xl group-hover:shadow-2xl border border-white/5 group-hover:border-[#4ade80]/40 transition-all duration-500 ease-out">
                                 <Image
                                     src={category.image}
                                     alt={category.title}
                                     fill
-                                    className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                    className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1128]/40 to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1128]/60 via-[#0B1128]/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
 
                             {/* Points with Timeline Connector */}

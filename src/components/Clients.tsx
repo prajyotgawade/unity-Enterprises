@@ -28,10 +28,9 @@ export default function ClientsSection() {
             </div>
 
             <div className="relative w-full overflow-hidden group">
-                {/* w-max ensures the flex container takes full width of content (2 sets) */}
                 <div className="flex animate-marquee gap-16 items-center w-max">
                     {tickerClients.map((client, index) => (
-                        <div key={index} className="relative w-32 h-20 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 shrink-0 flex items-center justify-center">
+                        <div key={index} className="relative w-32 h-20 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 hover:scale-110 shrink-0 flex items-center justify-center">
                             <Image
                                 src={`/cilents/${client}`}
                                 alt="Client Logo"

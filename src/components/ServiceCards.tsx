@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+import { expertiseData } from "../config/data";
 
 export default function ServiceCards() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -26,38 +26,6 @@ export default function ServiceCards() {
         return () => ctx.revert();
     }, []);
 
-    const expertiseData = [
-        {
-            title: "SMART ELECTRICAL PANEL",
-            image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000",
-            points: [
-                "Indian standards - BIS",
-                "IoT predictive maintenance",
-                "Advanced Fire Response & Safety System",
-                "Digital wiring & P&ID diagram - Fault Indication"
-            ]
-        },
-        {
-            title: "DIGITALIZATION & AI",
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000",
-            points: [
-                "Real-Time Interactive dashboard & Analytics",
-                "Integration - PLC, SCADA & IoT platforms",
-                "AI & Industrial Automation",
-                "Machine learning"
-            ]
-        },
-        {
-            title: "SOLAR ENGINEERING",
-            image: "https://images.unsplash.com/photo-1509391302863-553ca49bf822?q=80&w=1000",
-            points: [
-                "BIS-certified solar panels",
-                "Smart solar monitoring & IoT integration",
-                "Hybrid solar power system"
-            ]
-        }
-    ];
-
     return (
         <section ref={sectionRef} id="services" className="py-20 bg-[#0B1128] transition-colors duration-300 overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6">
@@ -71,19 +39,19 @@ export default function ServiceCards() {
                     {expertiseData.map((category, idx) => (
                         <div key={idx} className="expertise-column flex flex-col group">
                             {/* Heading */}
-                            <h3 className="text-xl md:text-2xl font-bold text-[#4ade80] uppercase tracking-wide mb-6 group-hover:text-white transition-colors">
+                            <h3 className="text-xl md:text-2xl font-bold text-[#4ade80] uppercase tracking-wide mb-6 group-hover:text-white transition-colors duration-300">
                                 {category.title}
                             </h3>
 
                             {/* Image Container */}
-                            <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden mb-10 shadow-2xl border border-white/10 group-hover:border-[#4ade80]/50 transition-all duration-500">
+                            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-10 shadow-xl group-hover:shadow-2xl border border-white/10 group-hover:border-[#4ade80]/50 transition-all duration-500 ease-out">
                                 <Image
                                     src={category.image}
                                     alt={category.title}
                                     fill
-                                    className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                    className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1128]/60 to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1128]/80 via-[#0B1128]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
 
                             {/* Points with Connector Style */}

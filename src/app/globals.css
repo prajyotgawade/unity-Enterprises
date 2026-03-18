@@ -190,3 +190,466 @@ body {
 .animate-fadeInRight {
   animation: fadeInRight 0.8s ease-out forwards;
 }
+
+/* ============================================================
+   ✨ UI/UX ENHANCEMENTS — ADDITIVE ONLY
+   All existing code above is untouched.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   1. SCROLL REVEAL — fade + slide-up on scroll enter
+   Usage: add class "ue-reveal" to any element.
+   JS observer added in a client component below.
+   ---------------------------------------------------------- */
+.ue-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ue-reveal.ue-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ue-reveal-delay-1 { transition-delay: 0.1s; }
+.ue-reveal-delay-2 { transition-delay: 0.2s; }
+.ue-reveal-delay-3 { transition-delay: 0.3s; }
+.ue-reveal-delay-4 { transition-delay: 0.45s; }
+
+/* ----------------------------------------------------------
+   2. HEADER — glassmorphism backdrop on scroll
+   Applied via JS class toggle: "ue-scrolled"
+   ---------------------------------------------------------- */
+header.ue-scrolled {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 4px 24px rgba(0, 104, 255, 0.08), 0 1px 0 rgba(0,0,0,0.06) !important;
+  transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.dark header.ue-scrolled {
+  background: rgba(11, 17, 40, 0.88) !important;
+  box-shadow: 0 4px 24px rgba(0, 104, 255, 0.15), 0 1px 0 rgba(255,255,255,0.04) !important;
+}
+
+/* ----------------------------------------------------------
+   3. BUTTON MICRO-ANIMATIONS — lift + glow on hover
+   ---------------------------------------------------------- */
+
+/* Primary CTA buttons (blue rounded pill) */
+a[class*="bg-[var(--ue-primary)]"],
+button[class*="bg-blue-6"],
+a[class*="bg-blue-6"] {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.22s ease,
+              background-color 0.2s ease !important;
+}
+
+a[class*="bg-[var(--ue-primary)]"]:hover,
+button[class*="bg-blue-6"]:hover,
+a[class*="bg-blue-6"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0, 104, 255, 0.40), 0 2px 8px rgba(0, 104, 255, 0.25) !important;
+}
+
+a[class*="bg-[var(--ue-primary)]"]:active,
+button[class*="bg-blue-6"]:active,
+a[class*="bg-blue-6"]:active {
+  transform: translateY(0px) scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 104, 255, 0.2) !important;
+  transition-duration: 0.1s !important;
+}
+
+/* Ripple effect on click */
+a[class*="bg-[var(--ue-primary)]"]::after,
+button[class*="bg-blue-6"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+a[class*="bg-[var(--ue-primary)]"]:active::after,
+button[class*="bg-blue-6"]:active::after {
+  opacity: 1;
+  transition: opacity 0s;
+}
+
+/* ----------------------------------------------------------
+   4. CARD HOVER — depth shadow + subtle glow lift
+   ---------------------------------------------------------- */
+
+/* White/light mode cards */
+.ue-card-lift {
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.28s ease,
+              border-color 0.28s ease;
+}
+
+.ue-card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 104, 255, 0.12), 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Dark nav cards (hero bottom cards) already have -translate-y, add glow */
+div[class*="bg-[#1e293b]"],
+div[class*="bg-[#151e32]"] {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+div[class*="bg-[#151e32]"]:hover {
+  box-shadow: 0 8px 32px rgba(0, 104, 255, 0.12) !important;
+}
+
+/* Testimonial cards — stronger glow on hover */
+div[class*="bg-[#151e32]"][class*="rounded-xl"]:hover {
+  box-shadow: 0 0 0 1px rgba(0, 104, 255, 0.25), 0 16px 40px rgba(0, 104, 255, 0.18) !important;
+}
+
+/* ----------------------------------------------------------
+   5. FORM INPUT — enhanced focus ring with animated glow
+   ---------------------------------------------------------- */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: var(--ue-primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 104, 255, 0.18),
+              0 2px 12px rgba(0, 104, 255, 0.10) !important;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+input,
+textarea,
+select {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
+}
+
+/* ----------------------------------------------------------
+   6. NAV LINK — smooth underline with spring
+   ---------------------------------------------------------- */
+nav a span[class*="w-0"] {
+  transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* ----------------------------------------------------------
+   7. LOGO — subtle scale on hover
+   ---------------------------------------------------------- */
+a[class*="group"] div[class*="w-16"] {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease !important;
+}
+
+a[class*="group"]:hover div[class*="w-16"] {
+  transform: scale(1.06) rotate(-1deg);
+  box-shadow: 0 4px 16px rgba(0, 104, 255, 0.2) !important;
+}
+
+/* ----------------------------------------------------------
+   8. IMAGE CONTAINERS — shimmer overlay on hover
+   ---------------------------------------------------------- */
+@keyframes ue-shimmer {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+div[class*="aspect-"][class*="overflow-hidden"]::after,
+div[class*="aspect-video"][class*="overflow-hidden"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+div[class*="aspect-"][class*="overflow-hidden"]:hover::after,
+div[class*="aspect-video"][class*="overflow-hidden"]:hover::after {
+  opacity: 1;
+  animation: ue-shimmer 0.7s ease forwards;
+}
+
+/* ----------------------------------------------------------
+   9. SECTION HEADINGS — animated left-border accent
+   ---------------------------------------------------------- */
+@keyframes ue-accent-grow {
+  from { width: 0; opacity: 0; }
+  to   { width: 60px; opacity: 1; }
+}
+
+h2[class*="font-bold"][class*="text-white"],
+h2[class*="font-bold"][class*="text-slate"] {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+h2[class*="font-bold"][class*="text-white"]::after,
+h2[class*="font-bold"][class*="text-slate"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--ue-primary), rgba(0, 104, 255, 0));
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+h2[class*="font-bold"][class*="text-white"].ue-visible::after,
+h2[class*="font-bold"][class*="text-slate"].ue-visible::after {
+  width: 60px;
+}
+
+/* ----------------------------------------------------------
+   10. FOOTER LINKS — slide-underline on hover
+   ---------------------------------------------------------- */
+footer a {
+  position: relative;
+  display: inline-block;
+}
+
+footer a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--ue-primary);
+  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 1px;
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+/* ----------------------------------------------------------
+   11. SMOOTH PAGE ENTRY — fade in from slight upward offset
+   ---------------------------------------------------------- */
+@keyframes ue-page-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+main,
+[role="main"] {
+  animation: ue-page-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ----------------------------------------------------------
+   12. MOBILE MENU LINKS — enhanced hover glow
+   ---------------------------------------------------------- */
+div[class*="bg-[#0B1128]"] a[class*="text-3xl"]:hover {
+  text-shadow: 0 0 20px rgba(0, 104, 255, 0.5);
+}
+
+/* ----------------------------------------------------------
+   13. ICON CONTAINERS (Why Choose Us) — pulse ring on hover
+   ---------------------------------------------------------- */
+@keyframes ue-ping-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0.35); }
+  70%  { box-shadow: 0 0 0 10px rgba(0, 104, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0); }
+}
+
+div[class*="w-16"][class*="h-16"][class*="rounded-full"]:hover {
+  animation: ue-ping-ring 0.7s ease-out forwards;
+}
+
+/* ----------------------------------------------------------
+   14. STICKY HEADER — transition when entering sticky state
+   ---------------------------------------------------------- */
+header {
+  transition: background 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+/* ----------------------------------------------------------
+   15. SELECTION STYLING — matches brand color
+   ---------------------------------------------------------- */
+::selection {
+  background-color: rgba(0, 104, 255, 0.18) !important;
+  color: inherit !important;
+}
+
+/* ----------------------------------------------------------
+   16. SCROLLBAR — thin, branded
+   ---------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 104, 255, 0.35);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 104, 255, 0.6);
+}
+
+/* ----------------------------------------------------------
+   17. HERO SLIDER NAV ARROWS — spring scale on hover
+   ---------------------------------------------------------- */
+button[class*="rounded-full"][class*="backdrop-blur"] {
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.25s ease,
+              box-shadow 0.25s ease !important;
+}
+
+button[class*="rounded-full"][class*="backdrop-blur"]:hover {
+  box-shadow: 0 0 20px rgba(0, 104, 255, 0.3) !important;
+}
+
+/* ----------------------------------------------------------
+   18. ABOUT / VISION CARDS — left border accent on hover
+   ---------------------------------------------------------- */
+div[class*="bg-[#151e32]"][class*="rounded-2xl"] {
+  border-left: 3px solid transparent !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+div[class*="bg-[#151e32]"][class*="rounded-2xl"]:hover {
+  border-left-color: var(--ue-primary) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* ----------------------------------------------------------
+   19. MARQUEE — pause on container hover (clients section)
+   ---------------------------------------------------------- */
+div[class*="overflow-hidden"]:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ----------------------------------------------------------
+   20. CLIENT LOGOS — scale pop on hover
+   ---------------------------------------------------------- */
+div[class*="grayscale"]:hover {
+  transform: scale(1.12) !important;
+}
+
+/* ============================================================
+   ✨ PRO-LEVEL CSS ENHANCEMENTS — ADDED BY EXPERT
+   ============================================================ */
+
+/* 21. Smooth Global Scrolling & Anti-Aliasing */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 22. Premium Gradient Text Sweep on Headings */
+@keyframes bg-sweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+h2 {
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+h2[class*="text-white"]:hover {
+  background-image: linear-gradient(to right, #ffffff 0%, var(--ue-primary) 50%, #4ade80 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: bg-sweep 3s linear infinite;
+  transform: translateX(4px);
+}
+
+/* 23. Kinetic Glow Links & Navbar Depth */
+nav a {
+  transition: color 0.3s ease, text-shadow 0.3s ease !important;
+}
+
+nav a[class*="text-[var(--ue-secondary)]"]:hover {
+  text-shadow: 0 0 16px rgba(0, 104, 255, 0.4);
+}
+
+/* 24. Elegant Kinetic Card Borders (Gradient tracing mock) */
+div[class*="shadow-xl"], div[class*="shadow-2xl"] {
+  position: relative;
+  z-index: 1;
+}
+
+div[class*="shadow-xl"]::before, div[class*="shadow-2xl"]::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  background: linear-gradient(45deg, var(--ue-primary) 0%, transparent 40%, transparent 60%, rgba(74, 222, 128, 0.6) 100%);
+  background-size: 300% 300%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.6s ease, background-position 0.6s ease;
+}
+
+div[class*="shadow-xl"]:hover::before, div[class*="shadow-2xl"]:hover::before {
+  opacity: 1;
+  background-position: 100% 100%;
+}
+
+/* 25. Floating Animation for Feature Images */
+section#services img, section#strengths img {
+  transform-origin: center;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.8s ease !important;
+}
+
+section#services img:hover, section#strengths img:hover {
+  transform: scale(1.08) rotate(-1.5deg) !important;
+  filter: brightness(1.1) contrast(1.15) saturate(1.1) !important;
+}
+
+/* 26. Subtle Universal Scale Down on Click for pure tactile feel */
+button, a[href] {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+button:active:not(:disabled), a[href]:active {
+  transform: scale(0.96) !important;
+}
+
+/* 27. Universal Staggered List Item Fluidity */
+ul li {
+  will-change: transform, opacity;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease !important;
+}
+
+ul li:hover {
+  transform: translateX(6px) !important;
+  opacity: 1 !important;
+}
+
+/* 28. Blur Reveal (Glassmorphic image loading feel) */
+@keyframes glass-reveal {
+  0% { filter: blur(10px); opacity: 0; transform: scale(0.95); }
+  100% { filter: blur(0px); opacity: 1; transform: scale(1); }
+}
+
+img {
+  animation: glass-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) ease-out forwards;
+}

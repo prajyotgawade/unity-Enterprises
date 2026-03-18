@@ -12,10 +12,12 @@ import gsap from "gsap";
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setMounted(true);
+
     const ctx = gsap.context(() => {
       gsap.fromTo(navRef.current,
         { y: -100, opacity: 0 },
@@ -23,6 +25,18 @@ export default function Header() {
       );
     }, navRef);
     return () => ctx.revert();
+  }, []);
+
+  // Scroll Progress Calculator
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scroll = `${(totalScroll / windowHeight) * 100}`;
+      setScrollProgress(Number(scroll));
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Lock body scroll when mobile menu is open
@@ -50,18 +64,18 @@ export default function Header() {
   return (
     <header
       ref={navRef}
-      className="sticky top-0 z-50 bg-[var(--ue-nav-bg)] border-b border-gray-100 shadow-sm"
+      className="sticky top-0 z-50 bg-[var(--ue-nav-bg)]/90 backdrop-blur-md border-b border-gray-100/50 shadow-sm transition-all duration-300"
     >
       <div className="flex items-center justify-between px-6 py-4 max-w-[1400px] mx-auto">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-16 h-16 bg-white shadow-sm rounded-lg overflow-hidden flex items-center justify-center border border-gray-100 group-hover:border-[var(--ue-primary)] transition-colors">
+          <div className="relative w-16 h-16 bg-white shadow-sm rounded-xl overflow-hidden flex items-center justify-center border border-gray-100 group-hover:border-[var(--ue-primary)] group-hover:shadow-md transition-all duration-300 ease-in-out">
             <Image
               src="/unity-logo.jpeg"
               alt="Unity Logo"
               width={64}
               height={64}
-              className="object-contain p-0.5"
+              className="object-contain p-0.5 group-hover:scale-105 transition-transform duration-500"
             />
           </div>
           <div className="flex flex-col leading-none">
@@ -80,10 +94,10 @@ export default function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-[15px] font-normal text-[var(--ue-secondary)] hover:text-[var(--ue-primary)] transition-colors relative group py-2"
+              className="text-[15px] font-medium text-[var(--ue-secondary)] hover:text-[var(--ue-primary)] transition-colors duration-300 relative group py-2"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--ue-primary)] transition-all duration-300 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--ue-primary)] transition-all duration-300 ease-out group-hover:w-full rounded-full" />
             </Link>
           ))}
         </nav>
@@ -91,13 +105,12 @@ export default function Header() {
         {/* Right Actions */}
         <div className="flex items-center gap-5">
 
-
           <Link
             href="/quote"
-            className="hidden md:flex items-center gap-2 bg-[var(--ue-primary)] text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-blue-700 transition-all shadow-md hover:shadow-lg"
+            className="hidden md:flex items-center gap-2 bg-[var(--ue-primary)] text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-blue-700 active:scale-95 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5"
           >
             Get a Quote
-            <ArrowRight size={16} />
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
 
           {/* Mobile Menu Toggle */}
@@ -109,6 +122,12 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      {/* Elegant Scroll Progress Bar */}
+      <div 
+        className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[var(--ue-primary)] to-[#4ade80] z-50 transition-none"
+        style={{ width: `${scrollProgress}%` }}
+      />
 
       {/* Mobile Menu Overlay - Animated Slide-In */}
       {mounted && createPortal(

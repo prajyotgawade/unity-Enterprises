@@ -1,55 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-
-const slides = [
-    {
-        id: 1,
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070",
-        title: "ELECTRICAL ENGINEERING",
-        subtitle: "Advanced Panel Manufacturing",
-        description: "State-of-the-art HT/LT Panels and Power Distribution solutions designed for reliability and safety.",
-        ctaText: "Explore Electrical",
-        ctaLink: "/electrical",
-        points: [
-            "Automatic Power Factor Control panel",
-            "Industrial electrical control panel",
-            "MCC panel's",
-            "Maintenance of electrical panels"
-        ]
-    },
-    {
-        id: 2,
-        image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070",
-        title: "DIGITALIZATION & AI",
-        subtitle: "Future-Ready Operations",
-        description: "Transform your facility with cutting-edge IoT integration, AI analytics, and automated process monitoring.",
-        ctaText: "Go Digital",
-        ctaLink: "/digital",
-        points: [
-            "Digital system & Process Automation",
-            "IoT based dashboard & Data analytics",
-            "Process parameter data logging",
-            "Energy monitoring system"
-        ]
-    },
-    {
-        id: 3,
-        image: "https://images.unsplash.com/photo-1509391302863-553ca49bf822?q=80&w=2070",
-        title: "SOLAR ENERGY SYSTEMS",
-        subtitle: "Precision Engineering",
-        description: "Sustainable and efficient solar power solutions for residential, commercial, and industrial applications.",
-        ctaText: "See Capabilities",
-        ctaLink: "/services",
-        points: [
-            "Solar installation – Rooftop & Industrial",
-            "On-Grid, Off-Grid & Hybrid solution",
-            "Solar street & Outdoor lighting",
-            "Energy storage, Monitoring & Maintenance"
-        ]
-    }
-];
+import { slidesData as slides } from "../config/data";
 
 export default function HeroSection() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -73,18 +27,24 @@ export default function HeroSection() {
     return (
         <section className="relative w-full bg-[var(--ue-secondary)]">
 
-            {/* 1. Static Tagline Section */}
-            <div className="relative w-full py-4 px-6 flex flex-col items-center justify-center text-center bg-[#0B1128] z-20">
-                <h1 className="text-4xl md:text-2xl lg:text-3xl font-serif font-bold text-white mb-4 tracking-tight drop-shadow-lg leading-tight uppercase">
-                    Unity Enterprises
-                </h1>
-                <p className="text-sm md:text-lg lg:text-xl font-serif text-white/90 leading-relaxed max-w-4xl tracking-widest uppercase opacity-80">
-                    “A Brighter Tomorrow Begin With Today’s Innovation”
-                </p>
-            </div>
-
             {/* Slider Container - Responsive Height */}
             <div className="relative w-full min-h-[650px] md:h-[700px] overflow-hidden flex flex-col">
+                
+                {/* Premium Glassmorphism Tagline Overlay */}
+                <div className="absolute top-8 left-4 right-4 md:top-12 z-40 pointer-events-none flex justify-center">
+                    <div className="relative backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-3xl py-6 px-8 md:px-16 flex flex-col items-center justify-center text-center overflow-hidden">
+                        {/* Subtle Shimmer inside the glass */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[ue-shimmer_2s_infinite] skew-x-12"></div>
+                        
+                        <h1 className="text-2xl md:text-5xl lg:text-5xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-300 tracking-tight text-white mb-2 md:mb-3 uppercase drop-shadow-2xl">
+                            UNITY ENTERPRISES<span className="text-[var(--ue-primary)]">.</span>
+                        </h1>
+                        <p className="text-[10px] md:text-sm font-bold text-[var(--ue-primary)] tracking-[0.25em] uppercase drop-shadow-md">
+                            “A Brighter Tomorrow Begins With Today’s Innovation”
+                        </p>
+                    </div>
+                </div>
+
                 {/* Slides */}
                 {slides.map((slide, index) => (
                     <div
@@ -92,13 +52,19 @@ export default function HeroSection() {
                         className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
                             }`}
                     >
-                        {/* Background Image */}
-                        <div
-                            className="absolute inset-0 bg-cover bg-center"
-                            style={{ backgroundImage: `url(${slide.image})` }}
-                        >
+                        {/* Background Image (Optimized Next.js Image) */}
+                        <div className="absolute inset-0 bg-[#0B1128]">
+                            <Image
+                                src={slide.image}
+                                alt={slide.title}
+                                fill
+                                priority={index === 0}
+                                className="object-cover transition-transform duration-[15s] ease-linear scale-105 group-hover:scale-110 mix-blend-screen opacity-90"
+                                sizes="100vw"
+                                quality={90}
+                            />
                             {/* Overlay: Darker on mobile for text readability */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/95 via-[#0f172a]/80 to-[#0f172a]/95 md:bg-gradient-to-l md:from-[#0f172a]/95 md:via-[#0f172a]/70 md:to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-b from-[#0B1128]/95 via-[#0f172a]/70 to-[#0B1128]/95 md:bg-gradient-to-l md:from-[#0f172a]/95 md:via-[#0f172a]/50 md:to-transparent border-t border-white/5 z-10"></div>
                         </div>
 
                         {/* Content Overlay */}
@@ -117,8 +83,8 @@ export default function HeroSection() {
                                         {slide.description}
                                     </p>
 
-                                    <a href={slide.ctaLink} className="mt-4 px-8 py-3 bg-[var(--ue-primary)] text-white font-bold rounded-full shadow-lg hover:bg-blue-600 transition-all uppercase tracking-wide text-sm flex items-center gap-2">
-                                        {slide.ctaText} <ArrowRight size={18} />
+                                    <a href={slide.ctaLink} className="mt-6 px-8 py-3.5 bg-[var(--ue-primary)] text-white font-bold rounded-full shadow-lg hover:bg-blue-600 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide text-sm flex items-center gap-2 group">
+                                        {slide.ctaText} <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
                                     </a>
                                 </div>
 
@@ -133,13 +99,13 @@ export default function HeroSection() {
 
                                         <ul className="space-y-8 relative">
                                             {slide.points.map((point, i) => (
-                                                <li key={i} className="flex items-center gap-5 group">
+                                                <li key={i} className="flex items-center gap-5 group/list">
                                                     {/* Connector Line */}
-                                                    <div className="absolute left-0 w-8 h-[2px] bg-sky-500/30 group-hover:bg-sky-400 transition-colors"></div>
+                                                    <div className="absolute left-0 w-8 h-[2px] bg-sky-500/30 group-hover/list:bg-sky-400 transition-colors duration-300"></div>
 
                                                     <div className="relative flex-shrink-0 z-10 ml-8">
                                                         {/* Dot Container */}
-                                                        <div className="w-10 h-10 rounded-full bg-[var(--ue-primary)] border-[3px] border-[#0B1128] shadow-[0_0_20px_rgba(0,104,255,0.4)] flex items-center justify-center group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(0,104,255,0.6)] transition-all duration-300">
+                                                        <div className="w-10 h-10 rounded-full bg-[var(--ue-primary)] border-[3px] border-[#0B1128] shadow-[0_0_20px_rgba(0,104,255,0.4)] flex items-center justify-center group-hover/list:scale-110 group-hover/list:shadow-[0_0_25px_rgba(0,104,255,0.6)] transition-all duration-300">
                                                             <div className="w-2.5 h-2.5 rounded-full bg-white shadow-sm"></div>
                                                         </div>
                                                     </div>
@@ -212,17 +178,17 @@ export default function HeroSection() {
                                 {/* Restored List */}
                                 <ul className="space-y-2 text-sm font-medium leading-relaxed text-white mb-6 flex-grow">
                                     {slide.points.map((point, i) => (
-                                        <li key={i} className="flex gap-2 text-left">
-                                            <span className={`${currentSlide === index ? "text-yellow-400" : "text-white/50"}`}>•</span>
+                                        <li key={i} className="flex gap-3 text-left items-start group-hover:translate-x-1 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }}>
+                                            <span className={`${currentSlide === index ? "text-yellow-400" : "text-white/50 group-hover:text-white/80 transition-colors"}`}>•</span>
                                             {point}
                                         </li>
                                     ))}
                                 </ul>
 
                                 {/* CTA in Card */}
-                                <div className={`mt-auto pt-4 border-t border-white/10 w-full text-center transition-opacity duration-300 ${currentSlide === index ? "opacity-100" : "opacity-50 group-hover:opacity-100"}`}>
-                                    <span className="text-sm font-bold text-[var(--ue-primary)] inline-flex items-center gap-1 uppercase tracking-wider">
-                                        {slide.ctaText} <ArrowRight size={16} />
+                                <div className={`mt-auto pt-5 border-t border-white/10 w-full text-center transition-opacity duration-300 ${currentSlide === index ? "opacity-100" : "opacity-50 group-hover:opacity-100"}`}>
+                                    <span className="text-sm font-bold text-[var(--ue-primary)] inline-flex items-center gap-2 uppercase tracking-wider group-hover:text-blue-400 transition-colors">
+                                        {slide.ctaText} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                                     </span>
                                 </div>
                             </div>

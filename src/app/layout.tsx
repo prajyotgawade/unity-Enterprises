@@ -4,6 +4,7 @@ import "./globals.css";
 import AppProviders from "@/components/Providers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import UXEnhancements from "@/components/UXEnhancements";
 
 // Unified Font: Clean, Industrial
 const roboto = Roboto({
@@ -46,6 +47,7 @@ export default function RootLayout({
         <AppProviders>
           <Header />
           {children}
+          <UXEnhancements />
           <Footer />
         </AppProviders>
       </body>
