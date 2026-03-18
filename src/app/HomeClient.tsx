@@ -20,8 +20,6 @@ import {
   Plug,
   Settings,
   Database,
-  Cloud,
-  Lock,
 } from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "next-themes"; // Import useTheme hook
@@ -140,7 +138,7 @@ export default function HomeClient() {
               <ul className="mt-3 text-sm text-foreground/70 space-y-2">
                 <li className="flex items-center gap-2"><Settings size={16} /> Automatic Power Factor Control panel</li>
                 <li className="flex items-center gap-2"><Plug size={16} /> Industrial electrical control panel</li>
-                <li className="flex items-center gap-2"><Database size={16} /> MCC panel's</li>
+                <li className="flex items-center gap-2"><Database size={16} /> MCC panel&apos;s</li>
                 <li className="flex items-center gap-2"><Wrench size={16} /> Maintenance of electrical panels</li>
               </ul>
             </div>
