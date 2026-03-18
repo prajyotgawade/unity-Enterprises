@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+:root {
+  /* Alfa Laval Inspired Theme */
+  --ue-primary: #0068FF;
+  /* Bright Blue */
+  --ue-secondary: #0B1128;
+  /* Deep Navy */
+  --ue-bg: #FFFFFF;
+  /* White */
+  --ue-text: #0B1128;
+  /* Deep Navy Text */
+  --ue-card-bg: #FFFFFF;
+  /* White for cards */
+  --ue-nav-bg: #FFFFFF;
+  /* White Navbar */
+  --ue-footer-bg: #0B1128;
+  /* Deep Navy Footer */
+  --ue-muted: #64748B;
+  /* Slate 500 */
+}
+
+@theme inline {
+  --color-background: var(--ue-bg);
+  --color-foreground: var(--ue-text);
+  --color-primary: var(--ue-primary);
+  --color-secondary: var(--ue-secondary);
+
+  /* Fallback if fonts not loaded yet */
+  --font-heading: sans-serif;
+  --font-body: sans-serif;
+}
+
+.dark {
+  /* Dark mode - Deep Navy Theme */
+  --ue-bg: #0B1128;
+  /* Deep Navy */
+  --ue-text: #E5E5E5;
+  /* Off-White */
+  --ue-secondary: #E5E5E5;
+  /* Light text for secondary */
+  --ue-card-bg: #151e32;
+  /* Slightly lighter navy */
+  --ue-nav-bg: #0B1128;
+  /* Deep Navy */
+  --ue-footer-bg: #040816;
+  /* Darker Navy */
+  --ue-muted: #94A3B8;
+  /* Slate 400 */
+  --ue-primary: #0068FF;
+  /* Keep Blue accent */
+}
+
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+body {
+  background: var(--ue-bg);
+  color: var(--ue-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Text Selection */
+::selection {
+  background-color: #ffffff;
+  /* White background */
+  color: #000000;
+  /* Black text */
+}
+
+/* Hero orbit helpers */
+.orbit {
+  position: absolute;
+  animation: orbit 16s linear infinite;
+}
+
+.orbit-1 {
+  left: 10%;
+  top: 15%;
+}
+
+.orbit-2 {
+  right: 12%;
+  top: 25%;
+  animation-duration: 20s;
+}
+
+.orbit-3 {
+  left: 55%;
+  bottom: 12%;
+  animation-duration: 24s;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(24px) rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg) translateX(24px) rotate(-180deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(24px) rotate(-360deg);
+  }
+}
+
+/* Feature tilt/glow */
+.tilt-card {
+  transition: transform 200ms, box-shadow 200ms, border-color 200ms;
+  will-change: transform;
+}
+
+.tilt-card:hover {
+  transform: translateY(-2px) rotate3d(1, 1, 0, 2deg);
+  box-shadow: 0 10px 24px rgba(188, 108, 37, 0.25);
+  border-color: var(--ue-accent-orange);
+}
+
+/* Infinite marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Vertical Marquee */
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical 20s linear infinite;
+}
+
+/* Pause animation on hover */
+.group:hover .animate-marquee-vertical {
+  animation-play-state: paused;
+}
+
+/* Fade In Left Animation */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+/* Fade In Right Animation */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
