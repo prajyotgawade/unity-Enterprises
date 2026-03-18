@@ -4,7 +4,7 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/lib/mongo";
 import { connectToDatabase } from "@/lib/db";
 import User from "@/lib/models/User"
-const name="abhijeet";
+
 export const authOptions: NextAuthOptions = {
     providers: [
         GoogleProvider({
