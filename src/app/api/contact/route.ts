@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import { connectToDatabase } from "@/lib/db";
-import Contact from "@/lib/models/Contact";
 import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
@@ -10,8 +8,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    await connectToDatabase();
-    await Contact.create({ name, email, message });
+    // Database storage removed: User only uses email for notifications now.
 
     if (process.env.MAIL_HOST && process.env.MAIL_USER && process.env.MAIL_PASS && process.env.MAIL_TO) {
       const transporter = nodemailer.createTransport({
