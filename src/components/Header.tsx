@@ -66,24 +66,24 @@ export default function Header() {
       ref={navRef}
       className="sticky top-0 z-50 bg-[var(--ue-nav-bg)]/90 backdrop-blur-md border-b border-gray-100/50 shadow-sm transition-all duration-300"
     >
-      <div className="flex items-center justify-between px-6 py-4 max-w-[1400px] mx-auto">
+      <div className="flex items-center justify-between px-6 py-2 max-w-[1400px] mx-auto">
         {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="relative w-20 h-20 flex items-center justify-center">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="relative w-14 h-14 flex items-center justify-center">
             <Image
               src="/unity-logo-transparent.png"
               alt="Unity Logo"
-              width={80}
-              height={80}
-              className="object-contain p-1"
+              width={56}
+              height={56}
+              className="object-contain"
               priority
             />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-heading font-bold text-2xl tracking-tighter text-[var(--ue-secondary)]">
+            <span className="font-heading font-bold text-lg tracking-tighter text-[var(--ue-secondary)]">
               UNITY
             </span>
-            <span className="text-[10px] font-bold tracking-[0.2em] text-[var(--ue-primary)] uppercase">
+            <span className="text-[8px] font-bold tracking-[0.2em] text-[var(--ue-primary)] uppercase">
               Enterprises
             </span>
           </div>
