@@ -68,19 +68,20 @@ export default function Header() {
     >
       <div className="flex items-center justify-between px-6 py-4 max-w-[1400px] mx-auto">
         {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-16 h-16 bg-white shadow-sm rounded-xl overflow-hidden flex items-center justify-center border border-gray-100 group-hover:border-[var(--ue-primary)] group-hover:shadow-md transition-all duration-300 ease-in-out">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="relative w-20 h-20 flex items-center justify-center">
             <Image
-              src="/unity-logo.jpeg"
+              src="/unity-logo-transparent.png"
               alt="Unity Logo"
-              width={64}
-              height={64}
-              className="object-contain p-0.5 group-hover:scale-105 transition-transform duration-500"
+              width={80}
+              height={80}
+              className="object-contain p-1"
+              priority
             />
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-heading font-bold text-2xl tracking-tighter text-[var(--ue-secondary)]">
-              UNITY<span className="text-[var(--ue-primary)]">.</span>
+              UNITY
             </span>
             <span className="text-[10px] font-bold tracking-[0.2em] text-[var(--ue-primary)] uppercase">
               Enterprises
@@ -124,7 +125,7 @@ export default function Header() {
       </div>
 
       {/* Elegant Scroll Progress Bar */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[var(--ue-primary)] to-[#4ade80] z-50 transition-none"
         style={{ width: `${scrollProgress}%` }}
       />

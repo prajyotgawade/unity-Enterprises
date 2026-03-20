@@ -29,19 +29,16 @@ export default function HeroSection() {
 
             {/* Slider Container - Responsive Height */}
             <div className="relative w-full min-h-[650px] md:h-[700px] overflow-hidden flex flex-col">
-                
+
                 {/* Premium Glassmorphism Tagline Overlay */}
                 <div className="absolute top-8 left-4 right-4 md:top-12 z-40 pointer-events-none flex justify-center">
                     <div className="relative backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-3xl py-6 px-8 md:px-16 flex flex-col items-center justify-center text-center overflow-hidden">
                         {/* Subtle Shimmer inside the glass */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[ue-shimmer_2s_infinite] skew-x-12"></div>
-                        
-                        <h1 className="text-2xl md:text-5xl lg:text-5xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-300 tracking-tight text-white mb-2 md:mb-3 uppercase drop-shadow-2xl">
-                            UNITY ENTERPRISES<span className="text-[var(--ue-primary)]">.</span>
+
+                        <h1 className="text-lg md:text-2xl lg:text-4xl font-heading font-black text-white tracking-tight uppercase drop-shadow-2xl leading-tight max-w-4xl">
+                            “A Brighter Tomorrow Begins With Today&apos;s Innovation”
                         </h1>
-                        <p className="text-[10px] md:text-sm font-bold text-[var(--ue-primary)] tracking-[0.25em] uppercase drop-shadow-md">
-                            “A Brighter Tomorrow Begins With Today’s Innovation”
-                        </p>
                     </div>
                 </div>
 

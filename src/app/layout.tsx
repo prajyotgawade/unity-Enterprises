@@ -24,11 +24,11 @@ export const metadata: Metadata = {
   description: "Advanced electrical engineering, manufacturing, and AI-driven automation solutions.",
   icons: {
     icon: [
-      { url: "/unity-logo.jpeg", type: "image/jpeg" },
+      { url: "/unity-logo-transparent.png", type: "image/png" },
     ],
-    shortcut: ["/unity-logo.jpeg"],
+    shortcut: ["/unity-logo-transparent.png"],
     apple: [
-      { url: "/unity-logo.jpeg", type: "image/jpeg" },
+      { url: "/unity-logo-transparent.png", type: "image/png" },
     ],
   },
 };
