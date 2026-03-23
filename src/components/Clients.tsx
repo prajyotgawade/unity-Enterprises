@@ -10,9 +10,8 @@ import Image from "next/image";
 // but the plan is to use what I found in list_dir.
 
 const clients = [
-    "c1.jpg", "c2.jpg", "c3.jpg",
-    "c4.jpg", "c5.jpg", "c6.jpg",
-    "c7.jpg", "c8.jpg", "c9.jpg"
+    "../unity-logo-transparent.png", "c2.jpg", "c3.jpg", "c4.jpg", "c5.jpg",
+    "c6.jpg", "c7.jpg", "c8.jpg", "c9.jpg"
 ];
 
 // Duplicate for infinite scroll smoothness (Exactly 2 sets for 50% translation logic)
@@ -35,7 +34,7 @@ export default function ClientsSection() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="clients" className="py-12 md:py-24 bg-[var(--ue-bg)] overflow-hidden">
+        <section ref={sectionRef} id="clients" className="py-12 md:py-24 bg-[#0B1128] overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6 mb-10 md:mb-16 text-center">
 
                 {/* ── Section Header — matches Contact Us / About Us style ── */}
@@ -43,7 +42,7 @@ export default function ClientsSection() {
                     <span className="inline-block px-4 py-1 rounded-full bg-blue-900/20 border border-blue-500/20 text-[var(--ue-primary)] font-bold text-xs uppercase tracking-widest mb-4">
                         Our Trusted Partners
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-[#0B1128] dark:text-white">
+                    <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white">
                         Industry Leaders Trust Unity
                     </h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-[var(--ue-primary)] to-[#4ade80] rounded-full mt-4 mx-auto"></div>
@@ -51,24 +50,27 @@ export default function ClientsSection() {
 
             </div>
 
-            <div className="relative w-full overflow-hidden group">
-                <div className="flex animate-marquee gap-16 items-center w-max">
+            <div className="relative w-full overflow-hidden group pb-10">
+                <div className="flex animate-marquee gap-10 md:gap-14 items-center w-max px-6">
                     {tickerClients.map((client, index) => (
-                        <div key={index} className="relative w-32 h-20 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 hover:scale-110 shrink-0 flex items-center justify-center">
+                        <div key={index} className="relative w-40 h-24 md:w-56 md:h-32 bg-white/5 border border-white/5 rounded-2xl flex items-center justify-center p-6 transition-all duration-500 hover:border-blue-500/30 hover:bg-white/10 group/logo">
+                            {/* Decorative Glow */}
+                            <div className="absolute inset-0 bg-blue-500/0 group-hover/logo:bg-blue-500/5 transition-colors duration-500 rounded-2xl" />
+                            
                             <Image
-                                src={`/cilents/${client}`}
+                                src={`/clients/${client}`}
                                 alt="Client Logo"
-                                width={120}
-                                height={80}
-                                className="object-contain max-h-full max-w-full"
+                                width={180}
+                                height={100}
+                                className="object-contain max-h-full max-w-full opacity-60 group-hover/logo:opacity-100 group-hover/logo:scale-105 transition-all duration-500 filter drop-shadow-lg"
                             />
                         </div>
                     ))}
                 </div>
 
-                {/* Safe fade for edges */}
-                <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--ue-bg)] to-transparent z-10 pointer-events-none" />
-                <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--ue-bg)] to-transparent z-10 pointer-events-none" />
+                {/* Refined gradient mask for edges */}
+                <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0B1128] via-[#0B1128]/80 to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0B1128] via-[#0B1128]/80 to-transparent z-10 pointer-events-none" />
             </div>
         </section>
     );
