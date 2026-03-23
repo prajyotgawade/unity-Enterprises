@@ -1,7 +1,7 @@
 export const slidesData = [
     {
         id: 1,
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070",
+        image: "/hero-electrical.png",
         title: "ELECTRICAL ENGINEERING",
         subtitle: "Advanced Panel Manufacturing",
         description: "State-of-the-art HT/LT Panels and Power Distribution solutions designed for reliability and safety.",
@@ -16,7 +16,7 @@ export const slidesData = [
     },
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070",
+        image: "/hero-digital.png",
         title: "DIGITALIZATION & AI",
         subtitle: "Future-Ready Operations",
         description: "Transform your facility with cutting-edge IoT integration, AI analytics, and automated process monitoring.",
@@ -31,7 +31,7 @@ export const slidesData = [
     },
     {
         id: 3,
-        image: "https://images.unsplash.com/photo-1509391302863-553ca49bf822?q=80&w=2070",
+        image: "/hero-solar.png",
         title: "SOLAR ENERGY SYSTEMS",
         subtitle: "Precision Engineering",
         description: "Sustainable and efficient solar power solutions for residential, commercial, and industrial applications.",
@@ -49,7 +49,7 @@ export const slidesData = [
 export const expertiseData = [
     {
         title: "SMART ELECTRICAL PANEL",
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000",
+        image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1000",
         points: [
             "Indian standards - BIS",
             "IoT predictive maintenance",
@@ -59,7 +59,7 @@ export const expertiseData = [
     },
     {
         title: "DIGITALIZATION & AI",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000",
+        image: "/expertise-digital.jpg",
         points: [
             "Real-Time Interactive dashboard & Analytics",
             "Integration - PLC, SCADA & IoT platforms",
@@ -69,7 +69,7 @@ export const expertiseData = [
     },
     {
         title: "SOLAR ENGINEERING",
-        image: "https://images.unsplash.com/photo-1509391302863-553ca49bf822?q=80&w=1000",
+        image: "/expertise-solar.jpg",
         points: [
             "BIS-certified solar panels",
             "Smart solar monitoring & IoT integration",
