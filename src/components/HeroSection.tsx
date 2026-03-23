@@ -68,19 +68,37 @@ export default function HeroSection() {
                         <div className="absolute inset-0 flex items-center justify-center md:justify-end z-20 pointer-events-none">
                             <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-center md:justify-end h-full pt-32 pb-20 md:py-20"> {/* Added top padding for mobile */}
 
-                                {/* Mobile Layout: Centered, Simplified */}
+                                {/* Mobile Layout: Full Content Visibility */}
                                 <div className="w-full md:hidden flex flex-col items-center justify-center text-center space-y-6 pointer-events-auto">
-                                    <h2 className="text-4xl font-heading font-bold uppercase tracking-wider text-[var(--ue-primary)] leading-tight drop-shadow-md">
-                                        {slide.title}
-                                    </h2>
-                                    <p className="text-gray-100 text-lg font-light leading-relaxed max-w-md drop-shadow-sm">
-                                        {slide.subtitle}
-                                    </p>
-                                    <p className="text-gray-300 text-sm leading-relaxed max-w-sm mx-auto hidden sm:block">
+                                    <div className="space-y-2">
+                                        <h2 className="text-3xl sm:text-4xl font-heading font-bold uppercase tracking-wider text-[var(--ue-primary)] leading-tight drop-shadow-md">
+                                            {slide.title}
+                                        </h2>
+                                        <p className="text-gray-100 text-lg font-light leading-relaxed max-w-md drop-shadow-sm">
+                                            {slide.subtitle}
+                                        </p>
+                                    </div>
+
+                                    {/* Added Points for Mobile */}
+                                    <div className="w-full max-w-[280px] mx-auto py-2">
+                                        <ul className="space-y-3 text-left inline-block">
+                                            {slide.points.map((point, i) => (
+                                                <li key={i} className="flex items-start gap-3 group/mob-list">
+                                                    <div className="mt-1.5 w-2 h-2 rounded-full bg-[var(--ue-primary)] shadow-[0_0_10px_rgba(0,104,255,1)] flex-shrink-0 animate-pulse"></div>
+                                                    <span className="text-white font-medium text-sm sm:text-base leading-tight">
+                                                        {point}
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Description always visible as requested */}
+                                    <p className="text-gray-300 text-sm leading-relaxed max-w-xs mx-auto">
                                         {slide.description}
                                     </p>
 
-                                    <a href={slide.ctaLink} className="mt-6 px-8 py-3.5 bg-[var(--ue-primary)] text-white font-bold rounded-full shadow-lg hover:bg-blue-600 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide text-sm flex items-center gap-2 group">
+                                    <a href={slide.ctaLink} className="mt-2 px-8 py-3.5 bg-[var(--ue-primary)] text-white font-bold rounded-full shadow-lg hover:bg-blue-600 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide text-sm flex items-center gap-2 group">
                                         {slide.ctaText} <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
                                     </a>
                                 </div>
