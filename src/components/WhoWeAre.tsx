@@ -1,9 +1,32 @@
+"use client";
 import Image from "next/image";
 import { Target, Lightbulb } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export default function WhoWeAre() {
+    const visionRef = useRef<HTMLDivElement>(null);
+    const missionRef = useRef<HTMLDivElement>(null);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("ue-stagger-visible");
+                        entry.target.classList.add("ue-visible");
+                    }
+                });
+            },
+            { threshold: 0.18 }
+        );
+        if (visionRef.current) observer.observe(visionRef.current);
+        if (missionRef.current) observer.observe(missionRef.current);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section className="relative py-12 pt-24 md:py-24 md:pt-44 bg-[#0B1128] overflow-hidden transition-colors duration-300">
+        <section ref={sectionRef} className="relative py-12 pt-24 md:py-24 md:pt-44 bg-[#0B1128] overflow-hidden transition-colors duration-300">
             <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
                 <div className="order-2 lg:order-1 animate-fade-in-up">
                     <div className="inline-block px-4 py-1.5 border border-blue-900/30 rounded-full bg-blue-900/10 mb-6">
@@ -21,9 +44,12 @@ export default function WhoWeAre() {
                     </p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {/* Vision Card */}
-                        <div className="p-6 md:p-8 bg-[#151e32] rounded-2xl border border-blue-900/20 shadow-sm hover:shadow-xl transition-all duration-300 group">
-                            <div className="w-12 h-12 bg-blue-900/30 text-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        {/* Vision Card — slides in from left */}
+                        <div
+                            ref={visionRef}
+                            className="ue-stagger-left ue-glass p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group"
+                        >
+                            <div className="w-12 h-12 bg-blue-900/30 text-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600/30 transition-all duration-300">
                                 <Target size={24} />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">VISION</h3>
@@ -32,9 +58,12 @@ export default function WhoWeAre() {
                             </p>
                         </div>
 
-                        {/* Aim Card */}
-                        <div className="p-6 md:p-8 bg-[#151e32] rounded-2xl border border-blue-900/20 shadow-sm hover:shadow-xl transition-all duration-300 group">
-                            <div className="w-12 h-12 bg-indigo-900/30 text-blue-200 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        {/* Mission Card — slides in from right 220ms later */}
+                        <div
+                            ref={missionRef}
+                            className="ue-stagger-right ue-glass p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group"
+                        >
+                            <div className="w-12 h-12 bg-indigo-900/30 text-blue-200 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-indigo-600/30 transition-all duration-300">
                                 <Lightbulb size={24} />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">MISSION</h3>

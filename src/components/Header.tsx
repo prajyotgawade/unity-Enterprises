@@ -27,13 +27,16 @@ export default function Header() {
     return () => ctx.revert();
   }, []);
 
-  // Scroll Progress Calculator
+  // Scroll Progress Calculator + sticky glass blur
   useEffect(() => {
     const handleScroll = () => {
       const totalScroll = document.documentElement.scrollTop || document.body.scrollTop;
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scroll = `${(totalScroll / windowHeight) * 100}`;
       setScrollProgress(Number(scroll));
+      if (navRef.current) {
+        navRef.current.classList.toggle("ue-scrolled", totalScroll > 20);
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -108,10 +111,10 @@ export default function Header() {
 
           <Link
             href="/quote"
-            className="hidden md:flex items-center gap-2 bg-[var(--ue-primary)] text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-blue-700 active:scale-95 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5"
+            className="ue-shimmer-btn hidden md:flex items-center gap-2 relative overflow-hidden bg-[var(--ue-primary)] text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-blue-700 active:scale-95 transition-all duration-300 shadow-md hover:shadow-[0_8px_28px_rgba(0,104,255,0.45)] hover:-translate-y-0.5 group/cta"
           >
             Get a Quote
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+            <ArrowRight size={18} className="group-hover/cta:translate-x-1 transition-transform duration-300" />
           </Link>
 
           {/* Mobile Menu Toggle */}

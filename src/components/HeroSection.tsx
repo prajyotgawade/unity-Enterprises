@@ -50,7 +50,7 @@ export default function HeroSection() {
                             }`}
                     >
                         {/* Background Image (Optimized Next.js Image) */}
-                        <div className="absolute inset-0 bg-[#0B1128]">
+                        <div className="absolute inset-0 bg-[#0B1128] ue-vignette">
                             <Image
                                 src={slide.image}
                                 alt={slide.title}
@@ -80,12 +80,12 @@ export default function HeroSection() {
                                     </div>
 
                                     {/* Added Points for Mobile */}
-                                    <div className="w-full max-w-[280px] mx-auto py-2">
-                                        <ul className="space-y-3 text-left inline-block">
+                                    <div className="ue-hero-glass w-full max-w-[300px] mx-auto py-4 px-5">
+                                        <ul className="space-y-3 text-left">
                                             {slide.points.map((point, i) => (
-                                                <li key={i} className="flex items-start gap-3 group/mob-list">
-                                                    <div className="mt-1.5 w-2 h-2 rounded-full bg-[var(--ue-primary)] shadow-[0_0_10px_rgba(0,104,255,1)] flex-shrink-0 animate-pulse"></div>
-                                                    <span className="text-white font-medium text-sm sm:text-base leading-tight">
+                                                <li key={i} className="ue-seq-item flex items-start gap-3">
+                                                    <span className="hex-bullet mt-0.5 flex-shrink-0"></span>
+                                                    <span className="text-white font-semibold text-sm sm:text-base leading-tight drop-shadow-md">
                                                         {point}
                                                     </span>
                                                 </li>
@@ -98,7 +98,7 @@ export default function HeroSection() {
                                         {slide.description}
                                     </p>
 
-                                    <a href={slide.ctaLink} className="mt-2 px-8 py-3.5 bg-[var(--ue-primary)] text-white font-bold rounded-full shadow-lg hover:bg-blue-600 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide text-sm flex items-center gap-2 group">
+                                    <a href={slide.ctaLink} className="ue-shimmer-btn mt-2 px-8 py-3.5 bg-[var(--ue-primary)] text-white font-bold rounded-full shadow-lg hover:bg-blue-600 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide text-sm flex items-center gap-2 group">
                                         {slide.ctaText} <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
                                     </a>
                                 </div>
@@ -108,23 +108,23 @@ export default function HeroSection() {
                                 <div className="hidden md:flex w-full md:max-w-2xl text-white space-y-10 animate-fadeInRight pointer-events-auto flex-col justify-center items-start text-left ml-auto">
 
                                     {/* Dynamic Points List - Hidden on Mobile */}
-                                    <div className="relative pl-6 w-full">
+                                    <div className="ue-hero-glass relative pl-6 w-full py-5 px-6">
                                         {/* Vertical linking line */}
-                                        <div className="absolute left-0 top-5 bottom-5 w-[2px] bg-sky-500/30 rounded-full"></div>
+                                        <div className="absolute left-6 top-5 bottom-5 w-[2px] bg-sky-500/30 rounded-full"></div>
 
                                         <ul className="space-y-8 relative">
                                             {slide.points.map((point, i) => (
-                                                <li key={i} className="flex items-center gap-5 group/list">
+                                                <li key={i} className="ue-seq-item flex items-center gap-5 group/list">
                                                     {/* Connector Line */}
                                                     <div className="absolute left-0 w-8 h-[2px] bg-sky-500/30 group-hover/list:bg-sky-400 transition-colors duration-300"></div>
 
                                                     <div className="relative flex-shrink-0 z-10 ml-8">
-                                                        {/* Dot Container */}
-                                                        <div className="w-10 h-10 rounded-full bg-[var(--ue-primary)] border-[3px] border-[#0B1128] shadow-[0_0_20px_rgba(0,104,255,0.4)] flex items-center justify-center group-hover/list:scale-110 group-hover/list:shadow-[0_0_25px_rgba(0,104,255,0.6)] transition-all duration-300">
-                                                            <div className="w-2.5 h-2.5 rounded-full bg-white shadow-sm"></div>
+                                                        {/* Hex Bullet */}
+                                                        <div className="w-10 h-10 rounded-full bg-[var(--ue-primary)]/20 border border-[var(--ue-primary)]/40 flex items-center justify-center group-hover/list:scale-110 group-hover/list:shadow-[0_0_25px_rgba(0,104,255,0.6)] transition-all duration-300">
+                                                            <span className="hex-bullet w-4 h-4"></span>
                                                         </div>
                                                     </div>
-                                                    <span className="text-2xl font-bold text-white tracking-wide shadow-black drop-shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                                                    <span className="text-xl font-bold text-white tracking-wide drop-shadow-lg opacity-95 group-hover/list:opacity-100 transition-opacity">
                                                         {point}
                                                     </span>
                                                 </li>
