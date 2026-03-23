@@ -59,7 +59,7 @@ export const expertiseData = [
     },
     {
         title: "DIGITALIZATION & AI",
-        image: "/expertise-digital.jpg",
+        image: "/expertise-digital.png",
         points: [
             "Real-Time Interactive dashboard & Analytics",
             "Integration - PLC, SCADA & IoT platforms",
@@ -81,7 +81,7 @@ export const expertiseData = [
 export const strengthData = [
     {
         title: "AI-POWERED SAFETY - PPE",
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000",
+        image: "/strength-ai-ppe.png",
         points: [
             "AI-enabled PPE workplace 100% safety monitoring",
             "Real-time PPE non-compliance alerts",
@@ -91,7 +91,7 @@ export const strengthData = [
     },
     {
         title: "SOLAR ROBOTICS CLEANING SYSTEM",
-        image: "https://images.unsplash.com/photo-1508514177221-18d14746d73c?q=80&w=1000",
+        image: "/strength-solar-robotics.png",
         points: [
             "Fully automated operation",
             "Boost Solar power generation by up to 40%",
