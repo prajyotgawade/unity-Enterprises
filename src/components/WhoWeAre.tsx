@@ -26,7 +26,7 @@ export default function WhoWeAre() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="relative py-12 pt-24 md:py-24 md:pt-44 bg-[#0B1128] overflow-hidden transition-colors duration-300">
+        <section ref={sectionRef} className="relative py-12 pt-12 md:py-20 md:pt-20 bg-[#0B1128] overflow-hidden transition-colors duration-300">
             <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
                 <div className="order-2 lg:order-1 animate-fade-in-up">
                     {/* ── Section Header — matches Contact Us style ── */}

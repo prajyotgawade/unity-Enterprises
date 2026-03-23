@@ -31,12 +31,12 @@ export default function HeroSection() {
             <div className="relative w-full min-h-[650px] md:h-[700px] overflow-hidden flex flex-col">
 
                 {/* Premium Glassmorphism Tagline Overlay */}
-                <div className="absolute top-8 left-4 right-4 md:top-12 z-40 pointer-events-none flex justify-center">
-                    <div className="relative backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-3xl py-6 px-8 md:px-16 flex flex-col items-center justify-center text-center overflow-hidden">
+                <div className="absolute top-6 left-4 right-4 md:top-12 z-40 pointer-events-none flex justify-center">
+                    <div className="relative backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.4)] rounded-2xl md:rounded-3xl py-4 px-6 md:py-6 md:px-16 flex flex-col items-center justify-center text-center overflow-hidden">
                         {/* Subtle Shimmer inside the glass */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[ue-shimmer_2s_infinite] skew-x-12"></div>
 
-                        <h1 className="text-lg md:text-2xl lg:text-4xl font-heading font-black text-white tracking-tight uppercase drop-shadow-2xl leading-tight max-w-4xl">
+                        <h1 className="text-base sm:text-lg md:text-2xl lg:text-4xl font-heading font-black text-white tracking-tight uppercase drop-shadow-2xl leading-tight max-w-4xl">
                             “A Brighter Tomorrow Begins With Today&apos;s Innovation”
                         </h1>
                     </div>
@@ -55,7 +55,7 @@ export default function HeroSection() {
                                 src={slide.image}
                                 alt={slide.title}
                                 fill
-                                priority={index === 0}
+                                priority={index === currentSlide}
                                 className="object-cover transition-transform duration-[15s] ease-linear scale-105 group-hover:scale-110 mix-blend-screen opacity-90"
                                 sizes="100vw"
                                 quality={90}
@@ -66,26 +66,26 @@ export default function HeroSection() {
 
                         {/* Content Overlay */}
                         <div className="absolute inset-0 flex items-center justify-center md:justify-end z-20 pointer-events-none">
-                            <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-center md:justify-end h-full pt-32 pb-20 md:py-20"> {/* Added top padding for mobile */}
+                            <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-center md:justify-end h-full pt-52 pb-20 md:py-20"> {/* Further increased top padding for mobile to fix overlap */}
 
                                 {/* Mobile Layout: Full Content Visibility */}
-                                <div className="w-full md:hidden flex flex-col items-center justify-center text-center space-y-6 pointer-events-auto">
+                                <div className="w-full md:hidden flex flex-col items-center justify-center text-center space-y-4 pointer-events-auto">
                                     <div className="space-y-2">
-                                        <h2 className="text-3xl sm:text-4xl font-heading font-bold uppercase tracking-wider text-[var(--ue-primary)] leading-tight drop-shadow-md">
+                                        <h2 className="text-2xl sm:text-3xl font-heading font-bold uppercase tracking-wider text-[var(--ue-primary)] leading-tight drop-shadow-md">
                                             {slide.title}
                                         </h2>
-                                        <p className="text-gray-100 text-lg font-light leading-relaxed max-w-md drop-shadow-sm">
+                                        <p className="text-gray-100 text-base sm:text-lg font-light leading-relaxed max-w-md drop-shadow-sm">
                                             {slide.subtitle}
                                         </p>
                                     </div>
 
                                     {/* Added Points for Mobile */}
-                                    <div className="ue-hero-glass w-full max-w-[300px] mx-auto py-4 px-5">
-                                        <ul className="space-y-3 text-left">
+                                    <div className="ue-hero-glass w-full max-w-[280px] mx-auto py-3 px-4">
+                                        <ul className="space-y-2 text-left">
                                             {slide.points.map((point, i) => (
-                                                <li key={i} className="ue-seq-item flex items-start gap-3">
-                                                    <span className="hex-bullet mt-0.5 flex-shrink-0"></span>
-                                                    <span className="text-white font-semibold text-sm sm:text-base leading-tight drop-shadow-md">
+                                                <li key={i} className="ue-seq-item flex items-start gap-2">
+                                                    <span className="hex-bullet mt-1 flex-shrink-0 w-3.5 h-3.5"></span>
+                                                    <span className="text-white font-semibold text-xs sm:text-sm leading-tight drop-shadow-md">
                                                         {point}
                                                     </span>
                                                 </li>
@@ -94,13 +94,9 @@ export default function HeroSection() {
                                     </div>
 
                                     {/* Description always visible as requested */}
-                                    <p className="text-gray-300 text-sm leading-relaxed max-w-xs mx-auto">
+                                    <p className="text-gray-300 text-[11px] sm:text-xs leading-relaxed max-w-xs mx-auto opacity-80 pb-4">
                                         {slide.description}
                                     </p>
-
-                                    <a href={slide.ctaLink} className="ue-shimmer-btn mt-2 px-8 py-3.5 bg-[var(--ue-primary)] text-white font-bold rounded-full shadow-lg hover:bg-blue-600 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide text-sm flex items-center gap-2 group">
-                                        {slide.ctaText} <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-                                    </a>
                                 </div>
 
 
@@ -138,73 +134,57 @@ export default function HeroSection() {
                     </div>
                 ))}
 
-                {/* Navigation Arrows - Adjusted for Mobile */}
-                <div className="absolute bottom-32 right-6 flex gap-4 z-30 md:hidden">
-                    <button
-                        onClick={prevSlide}
-                        className="p-3 rounded-full bg-white/10 text-white backdrop-blur-md border border-white/10"
-                    >
-                        <ChevronLeft size={24} />
-                    </button>
-                    <button
-                        onClick={nextSlide}
-                        className="p-3 rounded-full bg-white/10 text-white backdrop-blur-md border border-white/10"
-                    >
-                        <ChevronRight size={24} />
-                    </button>
-                </div>
-
+                {/* Navigation Arrows - Vertically Centered on Sides for All Devices */}
                 <button
                     onClick={prevSlide}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/10 hover:bg-[var(--ue-primary)] text-white backdrop-blur-md transition-all border border-white/10 hover:scale-110 hidden md:flex"
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 p-2.5 md:p-3 rounded-full bg-white/5 md:bg-white/10 hover:bg-[var(--ue-primary)] text-white backdrop-blur-md transition-all border border-white/10 hover:scale-110 flex"
                 >
-                    <ChevronLeft size={28} />
+                    <ChevronLeft size={22} className="md:w-7 md:h-7" />
                 </button>
                 <button
                     onClick={nextSlide}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/10 hover:bg-[var(--ue-primary)] text-white backdrop-blur-md transition-all border border-white/10 hover:scale-110 hidden md:flex"
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 p-2.5 md:p-3 rounded-full bg-white/5 md:bg-white/10 hover:bg-[var(--ue-primary)] text-white backdrop-blur-md transition-all border border-white/10 hover:scale-110 flex"
                 >
-                    <ChevronRight size={28} />
+                    <ChevronRight size={22} className="md:w-7 md:h-7" />
                 </button>
             </div>
 
-            {/* Bottom Highlight Boxes - Restored with Lists & CTA */}
-            <div className="relative z-40 bg-[#151e32] pt-6 pb-12 px-4 -mt-20 md:-mt-24">
-
-                <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Bottom Highlight Boxes - Redesigned Premium Layout */}
+            <div className="relative z-40 bg-[#0B1128] pt-12 pb-8 px-6 -mt-20 md:-mt-28">
+                <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
                     {slides.map((slide, index) => (
                         <div
                             key={slide.id}
                             onClick={() => setCurrentSlide(index)}
-                            className={`cursor-pointer p-6 md:p-8 rounded-2xl transition-all duration-300 relative overflow-hidden group border-2 flex flex-col
+                            className={`cursor-pointer p-8 md:p-12 rounded-[2.5rem] transition-all duration-500 relative overflow-hidden group border flex flex-col min-h-[280px] md:min-h-[380px]
                             ${currentSlide === index
-                                    ? "bg-[#1e293b] border-[var(--ue-primary)] shadow-[0_0_30px_rgba(56,189,248,0.2)] -translate-y-0 md:-translate-y-4"
-                                    : "bg-[#151e32] border-slate-700 hover:border-slate-500 hover:-translate-y-2 opacity-90"
+                                    ? "bg-[#151e32] border-[var(--ue-primary)] shadow-[0_30px_60px_rgba(0,104,255,0.2)] -translate-y-6"
+                                    : "bg-[#0f1830]/60 border-white/5 hover:border-white/10 hover:-translate-y-3 opacity-80 hover:opacity-100"
                                 }`}
                         >
-                            {/* Card Background Glow */}
-                            <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 transition-opacity duration-500 ${currentSlide === index ? "opacity-100" : "group-hover:opacity-50"}`} />
+                            {/* Card Decorative Elements */}
+                            <div className={`absolute -top-10 -right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl transition-opacity duration-500 ${currentSlide === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
+                            <div className={`absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[var(--ue-primary)] to-transparent transition-all duration-500 ${currentSlide === index ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-75"}`} />
 
-                            <div className="relative z-10 flex flex-col h-full">
-                                <h3 className={`text-xl md:text-2xl font-bold uppercase tracking-wider mb-4 transition-colors text-center ${currentSlide === index ? "text-[var(--ue-primary)]" : "text-white"
+                            <div className="relative z-10 flex flex-col h-full pt-4">
+                                <h3 className={`text-2xl md:text-3xl font-heading font-bold uppercase tracking-wider mb-8 transition-all ${currentSlide === index ? "text-white" : "text-gray-400 group-hover:text-white"
                                     }`}>
                                     {slide.title}
                                 </h3>
-                                {/* Restored List */}
-                                <ul className="space-y-2 text-sm font-medium leading-relaxed text-white mb-6 flex-grow">
-                                    {slide.points.map((point, i) => (
-                                        <li key={i} className="flex gap-3 text-left items-start group-hover:translate-x-1 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }}>
-                                            <span className={`${currentSlide === index ? "text-yellow-400" : "text-white/50 group-hover:text-white/80 transition-colors"}`}>•</span>
+
+                                {/* Restored List with Premium Bullets */}
+                                <ul className="space-y-4 mb-6 flex-grow text-left">
+                                    {slide.points.slice(0, 4).map((point, i) => (
+                                        <li key={i} className="flex gap-4 text-base md:text-lg font-medium leading-tight text-gray-300 items-start group-hover:translate-x-2 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }}>
+                                            <span className={`flex-shrink-0 w-2 h-2 rounded-full mt-2 transition-colors ${currentSlide === index ? "bg-[var(--ue-primary)] shadow-[0_0_12px_var(--ue-primary)]" : "bg-white/20 group-hover:bg-white/40"}`}></span>
                                             {point}
                                         </li>
                                     ))}
                                 </ul>
 
-                                {/* CTA in Card */}
-                                <div className={`mt-auto pt-5 border-t border-white/10 w-full text-center transition-opacity duration-300 ${currentSlide === index ? "opacity-100" : "opacity-50 group-hover:opacity-100"}`}>
-                                    <span className="text-sm font-bold text-[var(--ue-primary)] inline-flex items-center gap-2 uppercase tracking-wider group-hover:text-blue-400 transition-colors">
-                                        {slide.ctaText} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
-                                    </span>
+                                {/* Selected Indicator Line (Instead of button) */}
+                                <div className={`mt-auto h-1 w-full bg-blue-900/20 rounded-full overflow-hidden transition-opacity duration-300 ${currentSlide === index ? "opacity-100" : "opacity-0"}`}>
+                                    <div className="h-full bg-[var(--ue-primary)] animate-[ue-shimmer_3s_infinite]" style={{ width: "100%" }}></div>
                                 </div>
                             </div>
                         </div>

@@ -223,16 +223,16 @@ body {
    Applied via JS class toggle: "ue-scrolled"
    ---------------------------------------------------------- */
 header.ue-scrolled {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow: 0 4px 24px rgba(0, 104, 255, 0.08), 0 1px 0 rgba(0,0,0,0.06) !important;
-  transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 8px 32px rgba(0, 104, 255, 0.1), 0 1px 0 rgba(0,0,0,0.04) !important;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .dark header.ue-scrolled {
-  background: rgba(11, 17, 40, 0.88) !important;
-  box-shadow: 0 4px 24px rgba(0, 104, 255, 0.15), 0 1px 0 rgba(255,255,255,0.04) !important;
+  background: rgba(11, 17, 40, 0.96) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255,255,255,0.04) !important;
 }
 
 /* ----------------------------------------------------------
@@ -575,6 +575,7 @@ h2 {
 h2[class*="text-white"]:hover {
   background-image: linear-gradient(to right, #ffffff 0%, var(--ue-primary) 50%, #4ade80 100%);
   background-size: 200% auto;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: bg-sweep 3s linear infinite;
@@ -836,9 +837,16 @@ header.ue-scrolled {
   box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
 }
 
-/* ── BENTO CARD (32px corners, gradient border) ── */
+/* ── BENTO CARD (24px corners on mobile, 32px on desktop) ── */
 .ue-bento {
-  border-radius: 32px !important;
+  border-radius: 20px !important;
+}
+@media (min-width: 768px) {
+  .ue-bento {
+    border-radius: 32px !important;
+  }
+}
+.ue-bento {
   border: 1px solid transparent;
   background-clip: padding-box;
   position: relative;
@@ -848,7 +856,7 @@ header.ue-scrolled {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(0,104,255,0.4) 0%, rgba(255,255,255,0.04) 50%, rgba(74,222,128,0.2) 100%);
+  background: linear-gradient(135deg, rgba(0,104,255,0.3) 0%, rgba(255,255,255,0.02) 50%, rgba(74,222,128,0.1) 100%);
   z-index: -1;
   pointer-events: none;
 }
