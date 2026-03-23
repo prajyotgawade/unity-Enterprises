@@ -29,15 +29,16 @@ export default function WhoWeAre() {
         <section ref={sectionRef} className="relative py-12 pt-24 md:py-24 md:pt-44 bg-[#0B1128] overflow-hidden transition-colors duration-300">
             <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
                 <div className="order-2 lg:order-1 animate-fade-in-up">
-                    <div className="inline-block px-4 py-1.5 border border-blue-900/30 rounded-full bg-blue-900/10 mb-6">
-                        <span className="text-blue-400 font-bold text-xs uppercase tracking-widest">
+                    {/* ── Section Header — matches Contact Us style ── */}
+                    <div className="ue-reveal mb-8 md:mb-10">
+                        <span className="inline-block px-4 py-1 rounded-full bg-blue-900/20 border border-blue-500/20 text-blue-400 font-bold text-xs uppercase tracking-widest mb-4">
                             About Company
                         </span>
+                        <h2 className="text-3xl md:text-5xl font-heading font-extrabold uppercase tracking-wider text-white leading-tight">
+                            ABOUT US
+                        </h2>
+                        <div className="w-20 h-1 bg-gradient-to-r from-[var(--ue-primary)] to-[#4ade80] rounded-full mt-4"></div>
                     </div>
-
-                    <h2 className="text-3xl md:text-5xl font-heading font-light text-white mb-6 md:mb-8 leading-tight">
-                        ABOUT US
-                    </h2>
 
                     <p className="text-gray-300 leading-relaxed text-lg md:text-xl mb-6 md:mb-8 font-light">
                         Established in 1998 as an electrical maintenance service in Chiplun MIDC, we have evolved into <strong className="text-blue-400">UNITY ENTERPRISES</strong>—a trusted name in electrical engineering and advanced digital automation solutions. Today, we operate with a strong presence across the Mumbai Suburban MMR region and MIDC Lote Parshuram, Ratnagiri.

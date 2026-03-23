@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 // Sample logos - In a real scenario, we would map the files found in public/cilents
@@ -18,13 +19,36 @@ const clients = [
 const tickerClients = [...clients, ...clients];
 
 export default function ClientsSection() {
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) entry.target.classList.add("ue-visible");
+                });
+            },
+            { threshold: 0.1 }
+        );
+        sectionRef.current?.querySelectorAll(".ue-reveal").forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section id="clients" className="py-12 md:py-24 bg-[var(--ue-bg)] overflow-hidden">
+        <section ref={sectionRef} id="clients" className="py-12 md:py-24 bg-[var(--ue-bg)] overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6 mb-10 md:mb-16 text-center">
-                <h4 className="text-[var(--ue-primary)] font-bold uppercase tracking-widest text-sm mb-4">Our Trusted Partners</h4>
-                <h2 className="text-3xl md:text-5xl font-heading font-light text-[#0B1128] dark:text-gray-100">
-                    Industry Leaders Trust Unity
-                </h2>
+
+                {/* ── Section Header — matches Contact Us / About Us style ── */}
+                <div className="ue-reveal">
+                    <span className="inline-block px-4 py-1 rounded-full bg-blue-900/20 border border-blue-500/20 text-[var(--ue-primary)] font-bold text-xs uppercase tracking-widest mb-4">
+                        Our Trusted Partners
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-[#0B1128] dark:text-white">
+                        Industry Leaders Trust Unity
+                    </h2>
+                    <div className="w-20 h-1 bg-gradient-to-r from-[var(--ue-primary)] to-[#4ade80] rounded-full mt-4 mx-auto"></div>
+                </div>
+
             </div>
 
             <div className="relative w-full overflow-hidden group">
