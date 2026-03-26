@@ -18,14 +18,21 @@ export default function Footer() {
         <ul className="flex flex-wrap justify-center gap-8 text-[15px] font-normal tracking-wide">
           <li><Link href="/" className="hover:text-[var(--ue-primary)] transition-colors">Home</Link></li>
           <li><Link href="/about" className="hover:text-[var(--ue-primary)] transition-colors">About Us</Link></li>
-          <li><Link href="/electrical" className="hover:text-[var(--ue-primary)] transition-colors">Electrical</Link></li>
-          <li><Link href="/digital" className="hover:text-[var(--ue-primary)] transition-colors">Digital & AI</Link></li>
+          <li><Link href="/#contact" className="hover:text-[var(--ue-primary)] transition-colors">Contact Us</Link></li>
         </ul>
 
         {/* Socials */}
         <div className="flex gap-4">
-          <a href="#" className="p-3 bg-white/5 rounded-full hover:bg-[var(--ue-primary)] hover:text-white transition-all border border-white/10">
-            <Linkedin size={20} />
+          <a 
+            href="https://www.linkedin.com/in/unity-enterprises-4050412a4" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center justify-center transition-transform hover:scale-110"
+            title="Follow us on LinkedIn"
+          >
+            <div className="w-10 h-10 bg-[#0077b5] rounded-[4px] flex items-center justify-center shadow-lg">
+              <Linkedin size={24} fill="white" strokeWidth={0} className="text-white" />
+            </div>
           </a>
         </div>
       </div>

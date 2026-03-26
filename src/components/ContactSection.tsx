@@ -191,8 +191,9 @@ export default function ContactSection() {
                                 <select name="service" defaultValue="" className={`${inputCls} appearance-none cursor-pointer`}>
                                     <option value="" disabled className="text-gray-400">Service Interested In</option>
                                     <option value="electrical">Electrical Engineering</option>
-                                    <option value="digital">Digital &amp; AI Solutions</option>
-                                    <option value="maintenance">Maintenance Services</option>
+                                    <option value="digitalization">Digitalization & AI</option>
+                                    <option value="solar">Solar Energy Systems</option>
+                                    <option value="other">Other</option>
                                 </select>
 
                                 {/* Message */}
