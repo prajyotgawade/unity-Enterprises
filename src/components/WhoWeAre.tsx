@@ -95,24 +95,27 @@ const VisionMissionCard = ({ ref, title, description, icon, delayClass, accent }
     return (
         <div
             ref={ref}
-            className={`${delayClass} ue-glass p-8 md:p-10 rounded-[2.5rem] transition-all duration-500 group flex flex-col h-full hover:shadow-2xl hover:border-white/20 border border-white/5 relative bg-[#151e32]/40 backdrop-blur-xl overflow-hidden`}
+            className={`${delayClass} p-8 md:p-10 rounded-3xl transition-all duration-500 group flex flex-col h-full hover:shadow-2xl border border-white/10 relative bg-[#151e32]/40 backdrop-blur-xl overflow-hidden hover:border-white/20 hover:-translate-y-2`}
         >
-            <div className={`w-16 h-16 ${accent} bg-opacity-10 text-white rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
+            
+            <div className={`w-16 h-16 ${accent} bg-opacity-20 text-white rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-all duration-500 shadow-lg relative z-10`}>
+                <div className={`absolute inset-0 ${accent} blur-xl opacity-20 group-hover:opacity-40 transition-opacity rounded-full`} />
                 {icon}
             </div>
 
-            <h3 className="text-2xl font-heading font-black text-white mb-4 tracking-wider">
+            <h3 className="text-2xl font-heading font-black text-white mb-4 tracking-wider relative z-10 transition-transform duration-500 group-hover:translate-x-1">
                 {title}
             </h3>
             
-            <div className="w-12 h-[2px] bg-gradient-to-r from-[var(--ue-primary)] to-transparent mb-6" />
+            <div className="w-12 h-[2px] bg-gradient-to-r from-blue-500 to-transparent mb-6 relative z-10 opacity-60 group-hover:w-16 group-hover:opacity-100 transition-all duration-300" />
 
-            <p className="text-gray-300 leading-relaxed text-base font-light opacity-80 group-hover:opacity-100 transition-opacity">
+            <p className="text-gray-300 leading-relaxed text-base font-light opacity-80 group-hover:opacity-100 transition-opacity relative z-10">
                 {description}
             </p>
 
-            {/* Subtle Static Gradient Glow */}
-            <div className={`absolute -bottom-10 -right-10 w-32 h-32 ${accent} opacity-10 blur-3xl rounded-full`} />
+            {/* Subtle Gradient Glow */}
+            <div className={`absolute -bottom-10 -right-10 w-32 h-32 ${accent} opacity-5 blur-3xl rounded-full transition-opacity duration-500 group-hover:opacity-20`} />
         </div>
     );
 };
