@@ -21,23 +21,17 @@ export default function ContactSection() {
         return () => observer.disconnect();
     }, []);
 
-    // Glow-trail mouse tracker — same as ServiceCards / WhyChooseUs
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        const card = e.currentTarget;
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
-        card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
-    };
+
 
     // Shared input class
     const inputCls = "w-full p-3 md:p-4 bg-[#0d1528] rounded-xl text-white border border-slate-700/60 focus:outline-none focus:border-blue-500 focus:bg-[#0B1128] focus:shadow-[0_0_0_3px_rgba(0,104,255,0.15)] transition-all placeholder:text-gray-500 text-sm";
 
     return (
-        <section ref={sectionRef} id="contact" className="py-12 md:py-20 bg-[#0B1128] transition-colors duration-300 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6">
+        <section ref={sectionRef} id="contact" className="py-12 md:py-16 bg-[#0B1128] transition-colors duration-300 overflow-hidden">
+            <div className="max-w-6xl mx-auto px-6">
 
                 {/* ── Section Header ── */}
-                <div className="text-center mb-10 md:mb-16 ue-reveal animate-fade-in-up">
+                <div className="text-center mb-10 md:mb-12 ue-reveal animate-fade-in-up">
                     <span className="inline-block px-4 py-1 rounded-full bg-blue-900/20 border border-blue-500/20 text-blue-400 font-bold text-xs uppercase tracking-widest mb-3">
                         Get In Touch
                     </span>
@@ -48,13 +42,12 @@ export default function ContactSection() {
                 </div>
 
                 {/* ── Same 2-column grid layout ── */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
 
                     {/* ── LEFT: Contact Details ── */}
                     <div className="ue-reveal ue-reveal-d1 h-full">
                         <div
-                            onMouseMove={handleMouseMove}
-                            className="ue-glow-card relative p-6 md:p-8 bg-[#0f1830] rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 overflow-hidden h-full"
+                            className="relative p-7 md:p-8 bg-[#0f1830]/60 rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 overflow-hidden h-full shadow-xl"
                         >
                             {/* Gradient top accent line */}
                             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/60 to-transparent"></div>
@@ -123,8 +116,7 @@ export default function ContactSection() {
 
                     {/* ── RIGHT: Contact Form ── */}
                     <div
-                        onMouseMove={handleMouseMove}
-                        className="ue-reveal ue-reveal-d2 ue-glow-card relative p-6 md:p-10 bg-[#0f1830] rounded-2xl border border-white/5 hover:border-blue-500/30 overflow-hidden transition-all duration-300 h-full"
+                        className="ue-reveal ue-reveal-d2 relative p-7 md:p-8 bg-[#0f1830]/60 rounded-2xl border border-white/5 hover:border-blue-500/30 overflow-hidden transition-all duration-300 h-full shadow-xl"
                     >
                         {/* Gradient top accent line */}
                         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-[#4ade80]"></div>
