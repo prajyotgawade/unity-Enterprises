@@ -69,7 +69,7 @@ export const expertiseData = [
     },
     {
         title: "SOLAR ENGINEERING",
-        image: "/expertise-solar.jpg",
+        image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=2070",
         points: [
             "BIS-certified solar panels",
             "Smart solar monitoring & IoT integration",
