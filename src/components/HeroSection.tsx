@@ -60,16 +60,16 @@ export default function HeroSection() {
                                 sizes="100vw"
                                 quality={90}
                             />
-                            {/* Overlay: Darker on mobile for text readability */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-[#0B1128]/95 via-[#0f172a]/70 to-[#0B1128]/95 md:bg-gradient-to-l md:from-[#0f172a]/95 md:via-[#0f172a]/50 md:to-transparent border-t border-white/5 z-10"></div>
+                            {/* Consistent Overlay: Same dark-to-transparent fade for all devices as requested */}
+                            <div className="absolute inset-0 bg-gradient-to-l from-[#0f172a]/95 via-[#0f172a]/50 to-transparent border-t border-white/5 z-10"></div>
                         </div>
 
-                        {/* Content Overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center md:justify-end z-20 pointer-events-none">
+                        {/* Content Overlay - Hidden instantly when not active to prevent overlap */}
+                        <div className={`absolute inset-0 flex items-center justify-center md:justify-end z-20 pointer-events-none ${index === currentSlide ? "opacity-100" : "opacity-0 invisible"}`}>
                             <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-center md:justify-end h-full pt-52 pb-20 md:py-20"> {/* Further increased top padding for mobile to fix overlap */}
 
                                 {/* Mobile Layout: Full Content Visibility */}
-                                <div className="w-full md:hidden flex flex-col items-center justify-center text-center space-y-4 pointer-events-auto">
+                                <div className={`w-full md:hidden flex flex-col items-center justify-center text-center space-y-4 pointer-events-auto ${index === currentSlide ? "flex" : "hidden"}`}>
                                     <div className="space-y-2">
                                         <h2 className="text-2xl sm:text-3xl font-heading font-bold uppercase tracking-wider text-[var(--ue-primary)] leading-tight drop-shadow-md">
                                             {slide.title}
@@ -101,7 +101,7 @@ export default function HeroSection() {
 
 
                                 {/* Desktop Layout: Right aligned, Detailed List */}
-                                <div className="hidden md:flex w-full md:max-w-2xl text-white space-y-10 animate-fadeInRight pointer-events-auto flex-col justify-center items-start text-left ml-auto">
+                                <div className={`hidden md:flex w-full md:max-w-2xl text-white space-y-10 animate-fadeInRight pointer-events-auto flex-col justify-center items-start text-left ml-auto ${index === currentSlide ? "opacity-100" : "opacity-0 invisible"}`}>
 
                                     {/* Dynamic Points List - Hidden on Mobile */}
                                     <div className="ue-hero-glass relative pl-6 w-full py-5 px-6">

@@ -44,54 +44,75 @@ export default function WhoWeAre() {
                         Established in 1998 as an electrical maintenance service in Chiplun MIDC, we have evolved into <strong className="text-blue-400">UNITY ENTERPRISES</strong>—a trusted name in electrical engineering and advanced digital automation solutions. Today, we operate with a strong presence across the Mumbai Suburban MMR region and MIDC Lote Parshuram, Ratnagiri.
                     </p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {/* Vision Card — slides in from left */}
-                        <div
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
+                        {/* Vision Card upgrade — more depth, interactive glow */}
+                        <VisionMissionCard
                             ref={visionRef}
-                            className="ue-stagger-left ue-glass p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group"
-                        >
-                            <div className="w-12 h-12 bg-blue-900/30 text-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600/30 transition-all duration-300">
-                                <Target size={24} />
-                            </div>
-                            <h3 className="text-xl font-bold text-white mb-3">VISION</h3>
-                            <p className="text-sm text-gray-400 leading-relaxed">
-                                To lead the future by enabling industries to grow faster through smart digitalization and automation.
-                            </p>
-                        </div>
+                            title="VISION"
+                            description="To lead the future by enabling industries to grow faster through smart digitalization and automation."
+                            icon={<Target size={28} />}
+                            delayClass="ue-stagger-left"
+                            accent="bg-blue-600"
+                        />
 
-                        {/* Mission Card — slides in from right 220ms later */}
-                        <div
+                        {/* Mission Card upgrade — more depth, interactive glow */}
+                        <VisionMissionCard
                             ref={missionRef}
-                            className="ue-stagger-right ue-glass p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group"
-                        >
-                            <div className="w-12 h-12 bg-indigo-900/30 text-blue-200 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-indigo-600/30 transition-all duration-300">
-                                <Lightbulb size={24} />
-                            </div>
-                            <h3 className="text-xl font-bold text-white mb-3">MISSION</h3>
-                            <p className="text-sm text-gray-400 leading-relaxed">
-                                To empower businesses with intelligent, technology-driven solutions that simplify operations, enhance customer experiences, and drive sustainable growth.
-                            </p>
-                        </div>
+                            title="MISSION"
+                            description="To empower businesses with intelligent, technology-driven solutions that simplify operations, enhance customer experiences, and drive sustainable growth."
+                            icon={<Lightbulb size={28} />}
+                            delayClass="ue-stagger-right"
+                            accent="bg-indigo-600"
+                        />
                     </div>
                 </div>
 
-                <div className="relative order-1 lg:order-2 h-full min-h-[300px] md:min-h-[500px]">
-                    <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl h-full border border-gray-800">
+                <div className="relative order-1 lg:order-2 h-full min-h-[350px] md:min-h-[550px]">
+                    <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl h-full border border-white/5 group bg-[#151e32]">
                         <Image
                             src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070"
                             alt="Industrial Engineering"
                             fill
-                            className="object-cover transform hover:scale-105 transition-transform duration-700"
+                            className="object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
                             sizes="(max-width: 768px) 100vw, 50vw"
                             priority
                         />
-                        <div className="absolute inset-0 bg-[#0B1128]/10 mix-blend-multiply dark:bg-[#0B1128]/50"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-[#0B1128]/80 via-transparent to-transparent mix-blend-multiply opacity-60 group-hover:opacity-40 transition-opacity" />
+                        
+                        {/* Top corner accent */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--ue-primary)]/20 blur-[60px] rounded-full" />
                     </div>
                     {/* Decorative Elements */}
-                    <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-slate-100 dark:bg-slate-800/20 rounded-full -z-10 blur-3xl opacity-50"></div>
-                    <div className="absolute -top-8 -left-8 w-64 h-64 bg-blue-50 dark:bg-blue-900/10 rounded-full -z-10 blur-3xl opacity-50"></div>
+                    <div className="absolute -bottom-12 -right-12 w-80 h-80 bg-blue-600/10 rounded-full -z-10 blur-3xl opacity-40 animate-pulse" />
+                    <div className="absolute -top-12 -left-12 w-80 h-80 bg-teal-500/10 rounded-full -z-10 blur-3xl opacity-40 animate-pulse" style={{ animationDelay: '1.5s' }} />
                 </div>
             </div>
         </section>
     );
 }
+
+const VisionMissionCard = ({ ref, title, description, icon, delayClass, accent }: any) => {
+    return (
+        <div
+            ref={ref}
+            className={`${delayClass} ue-glass p-8 md:p-10 rounded-[2.5rem] transition-all duration-500 group flex flex-col h-full hover:shadow-2xl hover:border-white/20 border border-white/5 relative bg-[#151e32]/40 backdrop-blur-xl overflow-hidden`}
+        >
+            <div className={`w-16 h-16 ${accent} bg-opacity-10 text-white rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+                {icon}
+            </div>
+
+            <h3 className="text-2xl font-heading font-black text-white mb-4 tracking-wider">
+                {title}
+            </h3>
+            
+            <div className="w-12 h-[2px] bg-gradient-to-r from-[var(--ue-primary)] to-transparent mb-6" />
+
+            <p className="text-gray-300 leading-relaxed text-base font-light opacity-80 group-hover:opacity-100 transition-opacity">
+                {description}
+            </p>
+
+            {/* Subtle Static Gradient Glow */}
+            <div className={`absolute -bottom-10 -right-10 w-32 h-32 ${accent} opacity-10 blur-3xl rounded-full`} />
+        </div>
+    );
+};
