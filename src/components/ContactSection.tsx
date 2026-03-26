@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
 
 export default function ContactSection() {
     const sectionRef = useRef<HTMLElement>(null);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     // Staggered scroll reveal — same IntersectionObserver pattern as WhyChooseUs
     useEffect(() => {
@@ -133,75 +134,88 @@ export default function ContactSection() {
 
                         <h3 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 relative z-10">Send an Inquiry</h3>
 
-                        <form
-                            onSubmit={async (e) => {
-                                e.preventDefault();
-                                const form = e.currentTarget;
-                                const formData = new FormData(form);
-                                const data = Object.fromEntries(formData.entries());
+                        {isSubmitted ? (
+                            <div className="flex flex-col items-center justify-center text-center py-12 relative z-10 animate-fade-in-up">
+                                <div className="w-16 h-16 bg-green-500/20 border border-green-500/30 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(74,222,128,0.2)]">
+                                    <CheckCircle className="text-green-400 w-8 h-8" />
+                                </div>
+                                <h4 className="text-2xl md:text-3xl font-bold text-white mb-3">Thank You!</h4>
+                                <p className="text-gray-400 max-w-sm">
+                                    Your inquiry has been sent successfully. Our team will get back to you shortly.
+                                </p>
+                            </div>
+                        ) : (
+                            <form
+                                onSubmit={async (e) => {
+                                    e.preventDefault();
+                                    const form = e.currentTarget;
+                                    const formData = new FormData(form);
+                                    const data = Object.fromEntries(formData.entries());
 
-                                const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-                                if (btn) {
-                                    btn.disabled = true;
-                                    btn.innerText = "Sending...";
-                                }
-
-                                try {
-                                    const res = await fetch("/api/contact", {
-                                        method: "POST",
-                                        headers: { "Content-Type": "application/json" },
-                                        body: JSON.stringify(data),
-                                    });
-                                    if (res.ok) {
-                                        alert("Inquiry Sent Successfully! We will get back to you soon.");
-                                        form.reset();
-                                    } else {
-                                        alert("Oops! Something went wrong. Please try again later.");
-                                    }
-                                } catch (error) {
-                                  console.error(error);
-                                  alert("Error sending inquiry. Check your connection.");
-                                } finally {
+                                    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
                                     if (btn) {
-                                        btn.disabled = false;
-                                        btn.innerHTML = "Send Inquiry <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-send'><line x1='22' y1='2' x2='11' y2='13'></line><polygon points='22 2 15 22 11 13 2 9 22 2'></polygon></svg>";
+                                        btn.disabled = true;
+                                        btn.innerText = "Sending...";
                                     }
-                                }
-                            }}
-                            className="space-y-4 md:space-y-5 relative z-10"
-                        >
-                            {/* Row 1: Name + Company */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                                <input name="name" type="text" placeholder="Your Name" required className={inputCls} />
-                                <input name="company" type="text" placeholder="Company Name" className={inputCls} />
-                            </div>
 
-                            {/* Row 2: Email + Phone */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                                <input name="email" type="email" placeholder="Email Address" required className={inputCls} />
-                                <input name="phone" type="tel" placeholder="Phone Number" required className={inputCls} />
-                            </div>
-
-                            {/* Service Select */}
-                            <select name="service" defaultValue="" className={`${inputCls} appearance-none cursor-pointer`}>
-                                <option value="" disabled className="text-gray-400">Service Interested In</option>
-                                <option value="electrical">Electrical Engineering</option>
-                                <option value="digital">Digital &amp; AI Solutions</option>
-                                <option value="maintenance">Maintenance Services</option>
-                            </select>
-
-                            {/* Message */}
-                            <textarea name="message" rows={4} placeholder="Your Message" required className={`${inputCls} resize-none`}></textarea>
-
-                            {/* Submit — shimmer + gradient CTA matching site style */}
-                            <button
-                                type="submit"
-                                className="ue-shimmer-btn w-full py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-full hover:from-blue-500 hover:to-blue-400 hover:shadow-[0_8px_32px_rgba(0,104,255,0.45)] hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                                    let isSuccess = false;
+                                    try {
+                                        const res = await fetch("/api/contact", {
+                                            method: "POST",
+                                            headers: { "Content-Type": "application/json" },
+                                            body: JSON.stringify(data),
+                                        });
+                                        if (res.ok) {
+                                            isSuccess = true;
+                                            setIsSubmitted(true);
+                                        } else {
+                                            alert("Oops! Something went wrong. Please try again later.");
+                                        }
+                                    } catch (error) {
+                                      console.error(error);
+                                      alert("Error sending inquiry. Check your connection.");
+                                    } finally {
+                                        if (btn && !isSuccess) {
+                                            btn.disabled = false;
+                                            btn.innerHTML = "Send Inquiry <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-send'><line x1='22' y1='2' x2='11' y2='13'></line><polygon points='22 2 15 22 11 13 2 9 22 2'></polygon></svg>";
+                                        }
+                                    }
+                                }}
+                                className="space-y-4 md:space-y-5 relative z-10"
                             >
-                                Send Inquiry
-                                <Send size={18} />
-                            </button>
-                        </form>
+                                {/* Row 1: Name + Company */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                                    <input name="name" type="text" placeholder="Your Name" required className={inputCls} />
+                                    <input name="company" type="text" placeholder="Company Name" className={inputCls} />
+                                </div>
+
+                                {/* Row 2: Email + Phone */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                                    <input name="email" type="email" placeholder="Email Address" required className={inputCls} />
+                                    <input name="phone" type="tel" placeholder="Phone Number" required className={inputCls} />
+                                </div>
+
+                                {/* Service Select */}
+                                <select name="service" defaultValue="" className={`${inputCls} appearance-none cursor-pointer`}>
+                                    <option value="" disabled className="text-gray-400">Service Interested In</option>
+                                    <option value="electrical">Electrical Engineering</option>
+                                    <option value="digital">Digital &amp; AI Solutions</option>
+                                    <option value="maintenance">Maintenance Services</option>
+                                </select>
+
+                                {/* Message */}
+                                <textarea name="message" rows={4} placeholder="Your Message" required className={`${inputCls} resize-none`}></textarea>
+
+                                {/* Submit — shimmer + gradient CTA matching site style */}
+                                <button
+                                    type="submit"
+                                    className="ue-shimmer-btn w-full py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-full hover:from-blue-500 hover:to-blue-400 hover:shadow-[0_8px_32px_rgba(0,104,255,0.45)] hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    Send Inquiry
+                                    <Send size={18} />
+                                </button>
+                            </form>
+                        )}
                     </div>
 
                 </div>
