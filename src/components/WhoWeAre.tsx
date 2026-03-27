@@ -91,7 +91,16 @@ export default function WhoWeAre() {
     );
 }
 
-const VisionMissionCard = ({ ref, title, description, icon, delayClass, accent }: any) => {
+interface VisionMissionCardProps {
+    ref: React.RefObject<HTMLDivElement | null>;
+    title: string;
+    description: string;
+    icon: React.ReactNode;
+    delayClass: string;
+    accent: string;
+}
+
+const VisionMissionCard = ({ ref, title, description, icon, delayClass, accent }: VisionMissionCardProps) => {
     return (
         <div
             ref={ref}

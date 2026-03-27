@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ShieldCheck, BarChart3, Settings, Lightbulb, Wrench, Award, Users, Truck, Clock, FileText } from "lucide-react";
+import { ShieldCheck, Settings, Lightbulb, Wrench, Award, Users, Truck, Clock, FileText } from "lucide-react";
 
 export default function WhyChooseUs() {
     const sectionRef = useRef<HTMLElement>(null);
