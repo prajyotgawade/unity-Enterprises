@@ -56,12 +56,14 @@ export default function HeroSection() {
                                 alt={slide.title}
                                 fill
                                 priority={index === currentSlide}
-                                className="object-cover transition-transform duration-[15s] ease-linear scale-105 group-hover:scale-110 mix-blend-screen opacity-90"
+                                className="object-cover transition-transform duration-[15s] ease-linear scale-105 group-hover:scale-110 mix-blend-screen opacity-90 [mask-image:linear-gradient(to_bottom,black_85%,transparent_100%)]"
                                 sizes="100vw"
                                 quality={90}
                             />
                             {/* Consistent Overlay: Same dark-to-transparent fade for all devices as requested */}
                             <div className="absolute inset-0 bg-gradient-to-l from-[#0f172a]/95 via-[#0f172a]/50 to-transparent border-t border-white/5 z-10"></div>
+                            {/* Optimized bottom blend for a perfect image-to-background mix */}
+                            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0B1128] via-[#0B1128]/80 to-transparent z-12 pointer-events-none backdrop-blur-[2px]"></div>
                         </div>
 
                         {/* Content Overlay - Hidden instantly when not active to prevent overlap */}
@@ -164,7 +166,7 @@ export default function HeroSection() {
                         >
                             {/* Card Decorative Elements */}
                             <div className={`absolute -top-10 -right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl transition-opacity duration-500 ${currentSlide === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
-                            <div className={`absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[var(--ue-primary)] to-transparent transition-all duration-500 ${currentSlide === index ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-75"}`} />
+
 
                             <div className="relative z-10 flex flex-col h-full pt-4">
                                 <h3 className={`text-2xl md:text-3xl font-heading font-bold uppercase tracking-wider mb-8 transition-all ${currentSlide === index ? "text-white" : "text-gray-400 group-hover:text-white"
@@ -182,10 +184,7 @@ export default function HeroSection() {
                                     ))}
                                 </ul>
 
-                                {/* Selected Indicator Line (Instead of button) */}
-                                <div className={`mt-auto h-1 w-full bg-blue-900/20 rounded-full overflow-hidden transition-opacity duration-300 ${currentSlide === index ? "opacity-100" : "opacity-0"}`}>
-                                    <div className="h-full bg-[var(--ue-primary)] animate-[ue-shimmer_3s_infinite]" style={{ width: "100%" }}></div>
-                                </div>
+
                             </div>
                         </div>
                     ))}
