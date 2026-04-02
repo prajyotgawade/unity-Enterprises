@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle, ChevronDown } from "lucide-react";
 
 export default function ContactSection() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -188,13 +188,18 @@ export default function ContactSection() {
                                 </div>
 
                                 {/* Service Select */}
-                                <select name="service" defaultValue="" className={`${inputCls} appearance-none cursor-pointer`}>
-                                    <option value="" disabled className="text-gray-400">Service Interested In</option>
-                                    <option value="electrical">Electrical Engineering</option>
-                                    <option value="digitalization">Digitalization & AI</option>
-                                    <option value="solar">Solar Energy Systems</option>
-                                    <option value="other">Other</option>
-                                </select>
+                                <div className="relative group">
+                                    <select name="service" defaultValue="" className={`${inputCls} appearance-none cursor-pointer pr-12 relative z-10`}>
+                                        <option value="" disabled className="text-gray-400 font-medium">Service Interested In</option>
+                                        <option value="electrical">Electrical Engineering</option>
+                                        <option value="digitalization">Digitalization & AI</option>
+                                        <option value="solar">Solar Energy Systems</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500 group-hover:text-blue-400 group-focus-within:text-blue-500 transition-all duration-300 z-20">
+                                        <ChevronDown size={18} strokeWidth={2.5} />
+                                    </div>
+                                </div>
 
                                 {/* Message */}
                                 <textarea name="message" rows={4} placeholder="Your Message" required className={`${inputCls} resize-none`}></textarea>
