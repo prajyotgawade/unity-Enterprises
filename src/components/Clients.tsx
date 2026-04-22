@@ -10,8 +10,8 @@ import Image from "next/image";
 // but the plan is to use what I found in list_dir.
 
 const clients = [
-    "../unity-logo-transparent.png", "c2.jpg", "c3.jpg", "c4.jpg", "c5.jpg",
-    "c6.jpg", "c7.jpg", "c8.jpg", "c9.jpg"
+    "c2.png", "c3.png", "c4.png", "c5.png",
+    "c6.png", "c7.jpg", "c8.png", "c9.png" // Matching your provided files
 ];
 
 // Duplicate for infinite scroll smoothness (Exactly 2 sets for 50% translation logic)
@@ -56,14 +56,8 @@ export default function ClientsSection() {
                         <div key={index} className="relative w-40 h-24 md:w-56 md:h-32 bg-white/5 border border-white/5 rounded-2xl flex items-center justify-center p-6 transition-all duration-500 hover:border-blue-500/30 hover:bg-white/10 group/logo">
                             {/* Decorative Glow */}
                             <div className="absolute inset-0 bg-blue-500/0 group-hover/logo:bg-blue-500/5 transition-colors duration-500 rounded-2xl" />
-                            
-                            <Image
-                                src={`/clients/${client}`}
-                                alt="Client Logo"
-                                width={180}
-                                height={100}
-                                className="object-contain max-h-full max-w-full opacity-60 group-hover/logo:opacity-100 group-hover/logo:scale-105 transition-all duration-500 filter drop-shadow-lg"
-                            />
+
+                             {/* Logos removed as requested */}
                         </div>
                     ))}
                 </div>
