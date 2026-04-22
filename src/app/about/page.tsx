@@ -1,3 +1,13 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Learn about Unity Enterprises' journey since 1998. Experts in electrical engineering, industrial maintenance, and smart digitalization solutions.",
+  keywords: ["Unity Enterprises History", "Electrical Maintenance Chiplun", "Industrial Automation Experts", "About Unity Enterprises"],
+  alternates: {
+    canonical: "/about",
+  },
+};
 
 export default function AboutPage() {
   return (

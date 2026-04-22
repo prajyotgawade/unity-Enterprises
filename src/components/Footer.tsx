@@ -1,40 +1,97 @@
 "use client";
 
-import { Linkedin } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0B1128] text-gray-300 py-16 border-t border-white/10">
-      <div className="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+    <footer className="bg-[#0B1128] text-gray-300 py-20 border-t border-white/10 relative overflow-hidden">
+      {/* Decorative Glow */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full -mr-48 -mt-48" />
+      
+      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
 
-        {/* Brand & Copyright */}
-        <div className="text-center md:text-left">
-          <h3 className="text-white font-heading font-bold text-2xl mb-2">UNITY ENTERPRISES</h3>
-          <p className="text-sm opacity-60">© 2025 Unity Enterprises. All rights reserved.</p>
+        {/* Brand & Mission */}
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-white font-heading font-bold text-2xl mb-2 tracking-wider">UNITY ENTERPRISES</h3>
+            <div className="w-12 h-1 bg-blue-500 rounded-full" />
+          </div>
+          <p className="text-sm leading-relaxed opacity-70 max-w-xs">
+            Established in 1998, delivering excellence in electrical engineering, advanced automation, and AI-driven industrial solutions across Mumbai and Ratnagiri.
+          </p>
+          <div className="flex gap-4">
+            <a 
+              href="https://www.linkedin.com/in/unity-enterprises-4050412a4" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-[#0077b5] hover:border-[#0077b5] transition-all duration-300 group"
+              title="Follow us on LinkedIn"
+            >
+              <Linkedin size={20} className="text-gray-400 group-hover:text-white transition-colors" />
+            </a>
+          </div>
         </div>
 
-        {/* Links */}
-        <ul className="flex flex-wrap justify-center gap-8 text-[15px] font-normal tracking-wide">
-          <li><Link href="/" className="hover:text-[var(--ue-primary)] transition-colors">Home</Link></li>
-          <li><Link href="/about" className="hover:text-[var(--ue-primary)] transition-colors">About Us</Link></li>
-          <li><Link href="/#contact" className="hover:text-[var(--ue-primary)] transition-colors">Contact Us</Link></li>
-        </ul>
-
-        {/* Socials */}
-        <div className="flex gap-4">
-          <a 
-            href="https://www.linkedin.com/in/unity-enterprises-4050412a4" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flex items-center justify-center transition-transform hover:scale-110"
-            title="Follow us on LinkedIn"
-          >
-            <div className="w-10 h-10 bg-[#0077b5] rounded-[4px] flex items-center justify-center shadow-lg">
-              <Linkedin size={24} fill="white" strokeWidth={0} className="text-white" />
-            </div>
-          </a>
+        {/* Quick Links */}
+        <div className="space-y-6">
+          <h4 className="text-white font-bold text-lg uppercase tracking-widest">Navigation</h4>
+          <ul className="space-y-4 text-sm font-medium">
+            <li><Link href="/" className="hover:text-blue-400 transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500/40 group-hover:bg-blue-500 transition-colors" /> Home</Link></li>
+            <li><Link href="/about" className="hover:text-blue-400 transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500/40 group-hover:bg-blue-500 transition-colors" /> About Us</Link></li>
+            <li><Link href="/contact" className="hover:text-blue-400 transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500/40 group-hover:bg-blue-500 transition-colors" /> Contact Us</Link></li>
+            <li><Link href="/#services" className="hover:text-blue-400 transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500/40 group-hover:bg-blue-500 transition-colors" /> Our Services</Link></li>
+          </ul>
         </div>
+
+        {/* Core Expertise (SEO Keywords) */}
+        <div className="space-y-6">
+          <h4 className="text-white font-bold text-lg uppercase tracking-widest">Solutions</h4>
+          <ul className="space-y-4 text-sm opacity-70">
+            <li className="hover:text-white transition-colors cursor-default">Electrical Engineering</li>
+            <li className="hover:text-white transition-colors cursor-default">Industrial AI & IoT</li>
+            <li className="hover:text-white transition-colors cursor-default">PLC Automation</li>
+            <li className="hover:text-white transition-colors cursor-default">Solar Energy Systems</li>
+            <li className="hover:text-white transition-colors cursor-default">Digitalization & SCADA</li>
+          </ul>
+        </div>
+
+        {/* Contact Info */}
+        <div className="space-y-6">
+          <h4 className="text-white font-bold text-lg uppercase tracking-widest">Contact</h4>
+          <ul className="space-y-4 text-sm">
+            <li className="flex items-start gap-3 group">
+              <MapPin size={18} className="text-blue-400 mt-1 flex-shrink-0" />
+              <span className="opacity-70 group-hover:opacity-100 transition-opacity">
+                A/36, Datar Colony, Kurla (W), Mumbai - 400070
+              </span>
+            </li>
+            <li className="flex items-center gap-3 group">
+              <Phone size={18} className="text-blue-400 flex-shrink-0" />
+              <a href="tel:+918928691044" className="opacity-70 group-hover:opacity-100 transition-opacity">+91 89286 91044</a>
+            </li>
+            <li className="flex items-center gap-3 group">
+              <Mail size={18} className="text-blue-400 flex-shrink-0" />
+              <a href="mailto:Sales@unitytech.in" className="opacity-70 group-hover:opacity-100 transition-opacity">Sales@unitytech.in</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      {/* Bottom Bar with Hashtags */}
+      <div className="max-w-[1400px] mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-xs opacity-50 space-x-4 font-mono">
+          <span>#ElectricalEngineering</span>
+          <span>#AI</span>
+          <span>#Automation</span>
+          <span>#IndustrialIoT</span>
+          <span>#SmartEnergy</span>
+        </div>
+        <p className="text-xs opacity-40">
+          © 2025 Unity Enterprises. All rights reserved. 
+          <span className="hidden md:inline ml-4 border-l border-white/10 pl-4">Industrial Excellence Since 1998</span>
+        </p>
       </div>
     </footer>
   );
