@@ -1,66 +1,91 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import * as nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
     try {
-        const body = await req.json();
-        const { name, company, email, phone, service, message } = body;
+        const { name, email, phone, company, service, message } = await req.json();
 
-        if (!name || !email || !phone || !message) {
-            return NextResponse.json(
-                { error: "Missing required fields" },
-                { status: 400 }
-            );
-        }
-
+        // 0. Check for environment variables
         if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-            console.error("CRITICAL: GMAIL_USER or GMAIL_APP_PASSWORD is not defined in environment variables.");
+            console.error("Missing GMAIL_USER or GMAIL_APP_PASSWORD in environment variables");
             return NextResponse.json(
-                { error: "Email configuration missing on server." },
+                { error: "Email configuration missing" },
                 { status: 500 }
             );
         }
 
+        // 1. Create a transporter using Gmail service
         const transporter = nodemailer.createTransport({
             service: "gmail",
-            secure: true,
             auth: {
                 user: process.env.GMAIL_USER,
                 pass: process.env.GMAIL_APP_PASSWORD,
             },
         });
 
+        // 2. Setup email data
         const mailOptions = {
-            from: process.env.GMAIL_USER,
-            to: process.env.GMAIL_USER,
-            replyTo: email,
-            subject: `New Inquiry from ${name} - ${company || "No Company"}`,
-            text: `You have received a new inquiry.\n\nName: ${name}\nCompany: ${company || "Not provided"}\nEmail: ${email}\nPhone: ${phone}\nService: ${service || "Not specified"}\n\nMessage:\n${message}`,
+            from: `"Unity Enterprises Contact Form" <${process.env.GMAIL_USER}>`,
+            to: "Sales@unitytech.in", // The owner's email
+            replyTo: email, // Allow owner to reply directly to the sender
+            cc: "Unityenterprises36@gmail.com, Jitesh@unitytech.in",
+            subject: `New Inquiry: ${service ? service.toUpperCase() : 'General Inquiry'} from ${name}`,
             html: `
-                <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
-                    <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">New Website Inquiry</h2>
-                    <p><strong>Name:</strong> ${name}</p>
-                    <p><strong>Company:</strong> ${company || "Not provided"}</p>
-                    <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-                    <p><strong>Phone:</strong> ${phone}</p>
-                    <p><strong>Service:</strong> ${service || "Not specified"}</p>
-                    <div style="background: #f9fafb; padding: 15px; border-radius: 8px; margin-top: 20px;">
-                        <h4 style="margin-top: 0;">Message:</h4>
-                        <p style="white-space: pre-wrap;">${message}</p>
+                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; background-color: #ffffff; color: #1a202c;">
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <h1 style="color: #2563eb; margin: 0; font-size: 24px;">New Business Inquiry</h1>
+                        <p style="color: #64748b; font-size: 14px;">Unity Enterprises Website</p>
+                    </div>
+                    
+                    <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                        <h3 style="margin-top: 0; color: #1e293b; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">Contact Details</h3>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 8px 0; color: #64748b; width: 120px;"><strong>Name:</strong></td>
+                                <td style="padding: 8px 0; color: #1e293b;">${name}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #64748b;"><strong>Email:</strong></td>
+                                <td style="padding: 8px 0; color: #1e293b;"><a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #64748b;"><strong>Phone:</strong></td>
+                                <td style="padding: 8px 0; color: #1e293b;"><a href="tel:${phone}" style="color: #2563eb; text-decoration: none;">${phone}</a></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #64748b;"><strong>Company:</strong></td>
+                                <td style="padding: 8px 0; color: #1e293b;">${company || "Not Provided"}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #64748b;"><strong>Service:</strong></td>
+                                <td style="padding: 8px 0; color: #1e293b;"><span style="background-color: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;">${service || "General"}</span></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <h3 style="color: #1e293b; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">Message</h3>
+                        <div style="white-space: pre-wrap; color: #334155; line-height: 1.6; background-color: #ffffff; padding: 15px; border: 1px solid #f1f5f9; border-radius: 6px;">
+                            ${message}
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 12px;">
+                        <p>This inquiry was generated from the Unity Enterprises contact form.</p>
+                        <p>&copy; ${new Date().getFullYear()} Unity Enterprises. All rights reserved.</p>
                     </div>
                 </div>
             `,
         };
 
-        console.log(`Attempting to send email from ${process.env.GMAIL_USER}...`);
+        // 3. Send email
         await transporter.sendMail(mailOptions);
-        console.log("Email sent successfully!");
 
-        return NextResponse.json({ success: true, message: "Email sent successfully" });
-    } catch (error) {
+        return NextResponse.json({ message: "Email sent successfully" }, { status: 200 });
+    } catch (error: any) {
         console.error("Error sending email:", error);
         return NextResponse.json(
-            { error: "Failed to send email" },
+            { error: "Failed to send email", details: error.message },
             { status: 500 }
         );
     }
