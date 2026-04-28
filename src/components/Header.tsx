@@ -196,7 +196,7 @@ export default function Header() {
                 WhatsApp
               </a>
               <p className="text-center text-white/40 text-xs mt-4">
-                © 2025 Unity Enterprises
+                © {new Date().getFullYear()} Unity Enterprises
               </p>
             </div>
           </div>

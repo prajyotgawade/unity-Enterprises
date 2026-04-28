@@ -20,15 +20,18 @@ export default function Footer() {
           <p className="text-sm leading-relaxed opacity-70 max-w-xs">
             Established in 1998, delivering excellence in electrical engineering, advanced automation, and AI-driven industrial solutions across Mumbai and Ratnagiri.
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-col gap-4">
             <a 
               href="https://www.linkedin.com/in/unity-enterprises-4050412a4" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-[#0077b5] hover:border-[#0077b5] transition-all duration-300 group"
+              className="flex items-center gap-3 text-sm font-semibold text-blue-400 hover:text-white transition-all duration-300 group"
               title="Follow us on LinkedIn"
             >
-              <Linkedin size={20} className="text-gray-400 group-hover:text-white transition-colors" />
+              <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center group-hover:bg-[#0077b5] group-hover:border-[#0077b5] transition-all duration-300">
+                <Linkedin size={20} className="text-blue-400 group-hover:text-white transition-colors" />
+              </div>
+              <span>Follow us on LinkedIn</span>
             </a>
           </div>
         </div>
@@ -79,19 +82,19 @@ export default function Footer() {
 
       </div>
 
-      {/* Bottom Bar with Hashtags */}
-      <div className="max-w-[1400px] mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-xs opacity-50 space-x-4 font-mono">
-          <span>#ElectricalEngineering</span>
-          <span>#AI</span>
-          <span>#Automation</span>
-          <span>#IndustrialIoT</span>
-          <span>#SmartEnergy</span>
-        </div>
+      {/* Bottom Bar */}
+      <div className="max-w-[1400px] mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
         <p className="text-xs opacity-40">
-          © 2025 Unity Enterprises. All rights reserved. 
+          © {new Date().getFullYear()} Unity Enterprises. All rights reserved. 
           <span className="hidden md:inline ml-4 border-l border-white/10 pl-4">Industrial Excellence Since 1998</span>
         </p>
+        <div className="flex gap-6 text-[10px] uppercase tracking-[0.2em] opacity-30 font-bold">
+          <span>Mumbai</span>
+          <span>•</span>
+          <span>Ratnagiri</span>
+          <span>•</span>
+          <span>Worldwide</span>
+        </div>
       </div>
     </footer>
   );
