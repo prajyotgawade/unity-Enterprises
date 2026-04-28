@@ -10,12 +10,19 @@ import Image from "next/image";
 // but the plan is to use what I found in list_dir.
 
 const clients = [
-    "c2.png", "c3.png", "c4.png", "c5.png",
-    "c6.png", "c7.jpg", "c8.png", "c9.png" // Matching your provided files
+    { src: "/clients/1.jpg", alt: "Client 1" },
+    { src: "/clients/2.jpg", alt: "Client 2" },
+    { src: "/clients/3.jpg", alt: "Client 3" },
+    { src: "/clients/4.jpg", alt: "Client 4" },
+    { src: "/clients/5.jpg", alt: "Client 5" },
+    { src: "/clients/6.jpg", alt: "Client 6" },
+    { src: "/clients/7.jpg", alt: "Client 7" },
+    { src: "/clients/8.jpg", alt: "Client 8" },
+    { src: "/clients/9.jpg", alt: "Client 9" },
 ];
 
-// Duplicate for infinite scroll smoothness (Exactly 2 sets for 50% translation logic)
-const tickerClients = [...clients, ...clients];
+// Duplicate for infinite scroll smoothness
+const tickerClients = [...clients, ...clients, ...clients];
 
 export default function ClientsSection() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -34,7 +41,7 @@ export default function ClientsSection() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="clients" className="py-12 md:py-24 bg-[#0B1128] overflow-hidden">
+        <section ref={sectionRef} id="clients" className="pt-12 md:pt-24 pb-6 bg-[#0B1128] overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6 mb-10 md:mb-16 text-center">
 
                 {/* ── Section Header — matches Contact Us / About Us style ── */}
@@ -50,14 +57,17 @@ export default function ClientsSection() {
 
             </div>
 
-            <div className="relative w-full overflow-hidden group pb-10">
+            <div className="relative w-full overflow-hidden group pb-2">
                 <div className="flex animate-marquee gap-10 md:gap-14 items-center w-max px-6">
                     {tickerClients.map((client, index) => (
-                        <div key={index} className="relative w-40 h-24 md:w-56 md:h-32 bg-white/5 border border-white/5 rounded-2xl flex items-center justify-center p-6 transition-all duration-500 hover:border-blue-500/30 hover:bg-white/10 group/logo">
-                            {/* Decorative Glow */}
-                            <div className="absolute inset-0 bg-blue-500/0 group-hover/logo:bg-blue-500/5 transition-colors duration-500 rounded-2xl" />
-
-                             {/* Logos removed as requested */}
+                        <div key={index} className="relative w-40 h-24 md:w-56 md:h-32 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-white/10 transition-all duration-300">
+                            <Image
+                                src={client.src}
+                                alt={client.alt}
+                                width={224}
+                                height={128}
+                                className="w-full h-full object-contain"
+                            />
                         </div>
                     ))}
                 </div>
