@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="pt-20">
+    <main className="pt-[64px] md:pt-[72px]">
       <ContactSection />
     </main>
   );

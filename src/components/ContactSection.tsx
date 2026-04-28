@@ -27,7 +27,7 @@ export default function ContactSection() {
     const inputCls = "w-full p-3 md:p-4 bg-[#0d1528] rounded-xl text-white border border-slate-700/60 focus:outline-none focus:border-blue-500 focus:bg-[#0B1128] focus:shadow-[0_0_0_3px_rgba(0,104,255,0.15)] transition-all placeholder:text-gray-500 text-sm";
 
     return (
-        <section ref={sectionRef} id="contact" className="pt-8 md:pt-10 pb-12 md:pb-16 bg-[#0B1128] transition-colors duration-300 overflow-hidden">
+        <section ref={sectionRef} id="contact" className="pt-2 md:pt-10 pb-12 md:pb-16 bg-[#0B1128] transition-colors duration-300 overflow-hidden">
             <div className="max-w-6xl mx-auto px-6">
 
                 {/* ── Section Header ── */}

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen pt-24 px-6 max-w-7xl mx-auto bg-white dark:bg-[#0B1128] transition-colors duration-300">
+    <main className="min-h-screen pt-16 px-6 max-w-7xl mx-auto bg-white dark:bg-[#0B1128] transition-colors duration-300">
       <h1 className="text-4xl font-bold mb-8 text-slate-900 dark:text-white animate-fade-in-up">About Us</h1>
       <div className="prose prose-lg max-w-none">
         <p className="text-xl text-slate-600 dark:text-gray-300 mb-6 leading-relaxed">
