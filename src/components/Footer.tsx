@@ -75,7 +75,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-3 group">
               <Mail size={18} className="text-blue-400 flex-shrink-0" />
-              <a href="mailto:Sales@unitytech.in" className="opacity-70 group-hover:opacity-100 transition-opacity">Sales@unitytech.in</a>
+              <a href="Unityenterprises36@gmail.com" className="opacity-70 group-hover:opacity-100 transition-opacity">Sales@unitytech.in</a>
             </li>
           </ul>
         </div>
