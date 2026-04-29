@@ -49,7 +49,7 @@ export const slidesData = [
 export const expertiseData = [
     {
         title: "SMART ELECTRICAL PANEL",
-        image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1000",
+        image: "/expertise-smart-panel.png",
         points: [
             "Indian standards - BIS",
             "IoT predictive maintenance",

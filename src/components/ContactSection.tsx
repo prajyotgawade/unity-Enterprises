@@ -83,8 +83,8 @@ export default function ContactSection() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-white text-sm">Email Us</h4>
-                                        <a href="mailto:Sales@unitytech.in" className="block text-gray-400 mt-1 hover:text-blue-400 transition-colors text-sm">Sales@unitytech.in</a>
-                                        <a href="mailto:Unityenterprises36@gmail.com" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">Unityenterprises36@gmail.com</a>
+                                        <a href="mailto:Unityenterprises36@gmail.com" className="block text-gray-400 mt-1 hover:text-blue-400 transition-colors text-sm">Unityenterprises36@gmail.com</a>
+                                        <a href="mailto:Sales@unitytech.in" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">Sales@unitytech.in</a>
                                         <a href="mailto:Jitesh@unitytech.in" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">Jitesh@unitytech.in</a>
                                     </div>
                                 </div>
@@ -164,8 +164,8 @@ export default function ContactSection() {
                                             alert("Oops! Something went wrong. Please try again later.");
                                         }
                                     } catch (error) {
-                                      console.error(error);
-                                      alert("Error sending inquiry. Check your connection.");
+                                        console.error(error);
+                                        alert("Error sending inquiry. Check your connection.");
                                     } finally {
                                         if (btn && !isSuccess) {
                                             btn.disabled = false;

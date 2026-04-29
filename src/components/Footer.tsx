@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="bg-[#0B1128] text-gray-300 py-20 border-t border-white/10 relative overflow-hidden">
       {/* Decorative Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full -mr-48 -mt-48" />
-      
+
       <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
 
         {/* Brand & Mission */}
@@ -21,10 +21,10 @@ export default function Footer() {
             Established in 1998, delivering excellence in electrical engineering, advanced automation, and AI-driven industrial solutions across Mumbai and Ratnagiri.
           </p>
           <div className="flex flex-col gap-4">
-            <a 
-              href="https://www.linkedin.com/in/unity-enterprises-4050412a4" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://www.linkedin.com/in/unity-enterprises-4050412a4"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 text-sm font-semibold text-blue-400 hover:text-white transition-all duration-300 group"
               title="Follow us on LinkedIn"
             >
@@ -85,7 +85,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="max-w-[1400px] mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
         <p className="text-xs opacity-40">
-          © {new Date().getFullYear()} Unity Enterprises. All rights reserved. 
+          © {new Date().getFullYear()} Unity Enterprises. All rights reserved.
           <span className="hidden md:inline ml-4 border-l border-white/10 pl-4">Industrial Excellence Since 1998</span>
         </p>
         <div className="flex gap-6 text-[10px] uppercase tracking-[0.2em] opacity-30 font-bold">
