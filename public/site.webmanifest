@@ -3,12 +3,12 @@
   "short_name": "Unity",
   "icons": [
     {
-      "src": "/unity-logo-transparent.png",
+      "src": "/favicon.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/unity-logo-transparent.png",
+      "src": "/favicon.png",
       "sizes": "512x512",
       "type": "image/png"
     }

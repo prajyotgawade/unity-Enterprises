@@ -70,13 +70,13 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/unity-logo-transparent.png", type: "image/png" },
-      { url: "/unity-logo-transparent.png", type: "image/png", sizes: "32x32" },
-      { url: "/unity-logo-transparent.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.png", type: "image/png", sizes: "16x16" },
     ],
-    shortcut: ["/unity-logo-transparent.png"],
+    shortcut: ["/favicon.png"],
     apple: [
-      { url: "/unity-logo-transparent.png", sizes: "180x180", type: "image/png" },
+      { url: "/favicon.png", sizes: "180x180", type: "image/png" },
     ],
   },
   alternates: {
