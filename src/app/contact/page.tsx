@@ -2,11 +2,11 @@ import { Metadata } from "next";
 import ContactSection from "@/components/ContactSection";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Get a Quote",
-  description: "Contact Unity Enterprises for advanced electrical engineering, industrial automation, and smart digitalization solutions in Mumbai and Chiplun. Reach out for expert consultation.",
-  keywords: ["Contact Unity Enterprises", "Electrical Engineering Quote", "Automation Solutions Inquiry", "Unity Enterprises Mumbai Address", "Unity Enterprises Ratnagiri"],
+  title: "Contact Us | Expert Electrical & AI Solutions",
+  description: "Get in touch with Unity Enterprises today for a professional consultation. We specialize in industrial automation, electrical maintenance, and IoT solutions in Mumbai & Ratnagiri.",
+  keywords: ["Contact Unity Enterprises", "Electrical Engineering Quote", "Automation Solutions Inquiry", "Unity Enterprises Mumbai Address", "Unity Enterprises Ratnagiri", "Get a Quote Engineering"],
   alternates: {
-    canonical: "/contact",
+    canonical: "https://unitytech.in/contact",
   },
 };
 

@@ -25,11 +25,22 @@ export const metadata: Metadata = {
     default: "Unity Enterprises | Electrical Engineering & AI-Driven Automation",
     template: "%s | Unity Enterprises"
   },
-  description: "Unity Enterprises offers premium electrical engineering, industrial automation, and AI-driven solutions. Expert electrical maintenance and digital transformation services in Mumbai and Ratnagiri.",
-  keywords: ["Electrical Engineering", "AI Solutions", "Industrial Automation", "Smart Digitalization", "Solar Energy Systems", "Electrical Maintenance Chiplun", "Unity Enterprises Mumbai", "PLC Automation", "Industrial IoT"],
+  description: "Unity Enterprises delivers world-class electrical engineering, industrial automation, and AI-driven solutions. Leading digital transformation in Mumbai & Ratnagiri.",
+  keywords: ["Electrical Engineering", "AI Solutions", "Industrial Automation", "Smart Digitalization", "Solar Energy Systems", "Electrical Maintenance Chiplun", "Unity Enterprises Mumbai", "PLC Automation", "Industrial IoT", "Unity Enterprises Ratnagiri", "Electrical Solutions India"],
   authors: [{ name: "Unity Enterprises" }],
   creator: "Unity Enterprises",
   publisher: "Unity Enterprises",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -60,15 +71,19 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/unity-logo-transparent.png", type: "image/png" },
+      { url: "/unity-logo-transparent.png", type: "image/png", sizes: "32x32" },
+      { url: "/unity-logo-transparent.png", type: "image/png", sizes: "16x16" },
     ],
     shortcut: ["/unity-logo-transparent.png"],
     apple: [
-      { url: "/unity-logo-transparent.png", type: "image/png" },
+      { url: "/unity-logo-transparent.png", sizes: "180x180", type: "image/png" },
     ],
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://unitytech.in",
   },
+  category: 'engineering',
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({
@@ -82,43 +97,72 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Unity Enterprises",
-              "image": "https://unitytech.in/unity-logo-transparent.png",
-              "@id": "https://unitytech.in",
-              "url": "https://unitytech.in",
-              "telephone": "+918928691044",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "A/36, New Seva Society, Datar Colony, Kurla (W)",
-                "addressLocality": "Mumbai",
-                "postalCode": "400070",
-                "addressCountry": "IN"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Unity Enterprises",
+                "alternateName": "Unity Tech",
+                "url": "https://unitytech.in",
+                "logo": "https://unitytech.in/unity-logo-transparent.png",
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "+918928691044",
+                  "contactType": "customer service",
+                  "areaServed": "IN",
+                  "availableLanguage": "en"
+                },
+                "sameAs": [
+                  "https://www.linkedin.com/company/unity-enterprises",
+                  "https://twitter.com/unityenterprises"
+                ]
               },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 19.0760,
-                "longitude": 72.8777
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Unity Enterprises",
+                "url": "https://unitytech.in",
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://unitytech.in/search?q={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                }
               },
-              "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday"
-                ],
-                "opens": "09:00",
-                "closes": "18:00"
-              },
-              "sameAs": [
-                // Add social links here
-              ]
-            })
+              {
+                "@context": "https://schema.org",
+                "@type": "ProfessionalService",
+                "name": "Unity Enterprises",
+                "image": "https://unitytech.in/unity-logo-transparent.png",
+                "@id": "https://unitytech.in",
+                "url": "https://unitytech.in",
+                "telephone": "+918928691044",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "A/36, New Seva Society, Datar Colony, Kurla (W)",
+                  "addressLocality": "Mumbai",
+                  "postalCode": "400070",
+                  "addressCountry": "IN"
+                },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": 19.0760,
+                  "longitude": 72.8777
+                },
+                "openingHoursSpecification": {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                  ],
+                  "opens": "09:00",
+                  "closes": "18:00"
+                }
+              }
+            ])
           }}
         />
       </head>

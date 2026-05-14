@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description: "Learn about Unity Enterprises' journey since 1998. Experts in electrical engineering, industrial maintenance, and smart digitalization solutions.",
-  keywords: ["Unity Enterprises History", "Electrical Maintenance Chiplun", "Industrial Automation Experts", "About Unity Enterprises"],
+  title: "Our Story & Industrial Excellence",
+  description: "Established in 1998, Unity Enterprises is a pioneer in electrical engineering & AI automation. Discover our vision for a smarter, digital industrial future.",
+  keywords: ["Unity Enterprises History", "Electrical Maintenance Chiplun", "Industrial Automation Experts", "About Unity Enterprises", "Unity Enterprises Vision"],
   alternates: {
-    canonical: "/about",
+    canonical: "https://unitytech.in/about",
   },
 };
 
